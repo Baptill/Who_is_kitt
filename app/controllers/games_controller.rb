@@ -66,6 +66,8 @@ class GamesController < ApplicationController
     @player_one = @game.players.first
     @player_two = @game.players.last
 
+    @current_player = current_user.active_player(@game)
+
     @player_one_cards = @player_one.cards
     @player_one_active_cards = @player_one_cards.select(&:active)
     @player_one_guess_card = @player_one_cards.find_by(guess: true)
@@ -82,6 +84,8 @@ class GamesController < ApplicationController
     p @game.turns.find_by(number: 1)
 
     Turn.create!(player: @game.players.sample, number: 1) unless @game.turns.find_by(number: 1)
+
+    @turn = @game.turns.order(number: :asc).last
     puts "#########################"
 
     @characteristics = Characteristic.all

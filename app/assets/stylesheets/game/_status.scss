@@ -18,9 +18,9 @@
   margin: 0 auto;
 
   align-items: center;
-  width: 94vw;
+// width: 94vw;
   height: 90vh;
-  margin: 5vh 3vw;
+// margin: 5vh 3vw;
 }
 
 .player-one-deck {
@@ -51,4 +51,18 @@
 .card img {
   width: 100%;
   height: auto;
+}
+
+.mini-card {
+  width: 10px;
+  height: 15px;
+  background-color: blue;
+  margin: 5px 2px;
+}
+
+.mini-card-false {
+  width: 10px;
+  height: 15px;
+  background-color: red;
+  margin: 5px 2px;
 }

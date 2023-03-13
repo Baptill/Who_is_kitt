@@ -13,6 +13,7 @@ Rails.application.routes.draw do
     end
   end
   resource :dashboard, only: :show
+  resources :characteristic_questions, only: :update
   # get 'dashboard', to: 'dashboards#show'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

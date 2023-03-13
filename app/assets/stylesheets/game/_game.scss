@@ -1,0 +1,30 @@
+.game-status {
+  display:grid;
+  grid-template-columns: 1fr 150px 1fr;
+  padding:24px 72px;
+  width:100%;
+}
+
+.game-user-name {
+  font-size:30px;
+  font-family: "street", "Helvetica", "sans-serif";
+}
+
+.countdown-timer {
+  background:$yellow;
+  width:120px;
+  height:120px;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "street", "Helvetica", "sans-serif";
+  font-size:50px;
+  color:$blue;
+  border-radius:50%;
+  margin:0 auto;
+}
+
+.mini-game-grid {
+  display:grid;
+  grid-template-columns: repeat(12, 1fr);
+}

@@ -1,5 +1,6 @@
 class Card < ApplicationRecord
   belongs_to :character
+  has_many :characteristics, through: :character
   belongs_to :player
 
   validates :character, presence: true

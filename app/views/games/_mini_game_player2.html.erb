@@ -1,0 +1,9 @@
+ <div class="mini-game-grid">
+  <% @game.player_two_active_cards.shuffle.each do |card| %>
+    <% if card.active == true %>
+      <div class="mini-card"></div>
+    <% else %>
+      <div class="mini-card-false"></div>
+    <% end %>
+  <% end %>
+</div>
