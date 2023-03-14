@@ -129,3 +129,10 @@
       <% end %>
   </div>
 </div>
+
+<!-- buzzer link -->
+<% if @turn.player.user == current_user %>
+  <div class="d-flex justify-content-center">
+    <%= url_for(controller: 'games', action: 'buzz', id: @sarted_game.id, active_player: true) %>
+    <%= link_to "Buzzer", game_buzzer_path(@game), method: :post, class: "btn btn-primary" %>
+  </div>

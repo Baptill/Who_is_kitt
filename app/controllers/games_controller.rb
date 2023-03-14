@@ -45,9 +45,6 @@ class GamesController < ApplicationController
     @player_guess_card = @player_one_cards.find_by(guess: true)
   end
 
-  def ask_characteristic
-    # redirect_to game_path(@game)
-  end
 
   def show
     # raise
@@ -89,6 +86,25 @@ class GamesController < ApplicationController
     puts "#########################"
 
     @characteristics = Characteristic.all
+  end
+
+  # créer une méthode permettant de buzzer pour trouver sa card guess
+  # le buzz n'apparaît qu'à partir du second tour
+  # si le joueur qui a buzzé a trouvé sa card guess alors il gagne la partie
+  # sinon c'est l'autre joueur qui gagne la partie
+  def buzz
+    @game = Game.find(params[:game])
+    @player = Player.find(params[:player])
+    @card = Card.find(params[:card])
+
+    @player.update(guess: true)
+
+    if @player.guess
+      @game.update(winner: @player)
+      @game.finished!
+    end
+
+    redirect_to game_path(@game)
   end
 
   def create

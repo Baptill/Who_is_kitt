@@ -54,6 +54,22 @@ class Game < ApplicationRecord
     status == "started"
   end
 
+  def finished!
+    update(status: "finished")
+  end
+
+  def finished?
+    status == "finished"
+  end
+
+  def buzzer!
+    update(status: "buzzer")
+  end
+
+  def buzzer?
+    status == "buzzer"
+  end
+
   private
 
   def broadcast_data
