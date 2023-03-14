@@ -91,6 +91,7 @@ class GamesController < ApplicationController
     @characteristics = Characteristic.all
   end
 
+
   def create
     game = Game.new(status: 'pending')
 
