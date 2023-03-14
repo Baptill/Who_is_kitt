@@ -1,0 +1,31 @@
+<% if @turn.player.user == current_user %>
+
+        <div id="dock-container">
+          <div id="dock">
+            <ul>
+                <% @characteristic_collection.each do |charac| %>
+                  <%= link_to game_characteristic_questions_path(@game, characteristic_id: charac.id), data: {turbo_method: :post} do %>
+                    <li>
+                      <span><%= charac.name %></span>
+                      <%= image_tag "icons/#{charac.name}.png", style:" height:45px" %>
+                    </li>
+                  <% end %>
+
+                <% end %>
+ <li>
+                      <span>BUZZER</span>
+                      <%= image_tag "icons/buzzer.png", style:" height:45px" %>
+                    </li>
+            </ul>
+          </div>
+        </div>
+
+
+      </div>
+<% end %>
+
+   <%# <%= f.association :characteristic,
+            as: :radio_buttons,
+            collection: @characteristic_collection,
+            wrapper_html: {class: "flex-grow-1"}
+          %>
