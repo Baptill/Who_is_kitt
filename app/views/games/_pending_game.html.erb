@@ -1,23 +1,21 @@
-   <div class="container d-flex flex-column justify-content-center align-items-center height100vh">
-    <h1>En attente de votre adversaire ...</h1>
-    <span>Rappel du lien de jeu : htts://localhost:3000/games/<%= @game.id %>/</span>
-      <div class="spinner-border" role="status">
-      <div><%= %></div>
-      <span class="sr-only">Waiting for player 2</span>
+<div class="content critical-animation" data-controller="pending" data-action="click->pending#playSound">
+    <%= audio_tag("waiting.mp3", autoplay: true, :data => { :pending_target => 'audio'}) %>
+    <div class="loading-pending mb-5">
+      <h1>En attente de votre adversaire</h1>
+      <h3>Rappel du lien de jeu : htts://localhost:3000/games/<%= @game.id %>/</h3>
+      <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     </div>
-    <div class="rubik-loader"></div>
+
+  <div class="user-pending mt-5">
+    <div class="item-playeur">
+      <div class="current-avatar"><%= current_user.photo.key %></div>
+      <span><h2><%= current_user.nickname %></h2></span>
+    </div>
+    <h1 class="vs">VS</h1>
+    <h1 class= "critical" >Coup Critique !</h1>
+    <div class="item-playeur">
+      <div class="loading-avatar"><h1 style="font-size: 120px">?</h1></div>
+      <span><h2>Joueur 2</h2></span>
+    </div>
   </div>
-
-<%#
-<div class="d-flex flex-column mb-3 pending-modal w-50 ">
-  <div class="p-2">
-    <h2>En attente de votre adversaire ...</h2>
-  </div>
-
-  <div class="spinner-border" role="status">
-    <div></div>
-    <span class="sr-only">Waiting for player 2</span>
-  </div>
-
-
-</div> %>
+</div>

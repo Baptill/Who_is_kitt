@@ -12,3 +12,6 @@ application.register("game-subscription", GameSubscriptionController)
 
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import PendingController from "./pending_controller"
+application.register("pending", PendingController)

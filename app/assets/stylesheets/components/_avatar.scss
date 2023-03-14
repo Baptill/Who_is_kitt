@@ -2,6 +2,23 @@
   width: 40px;
   border-radius: 50%;
 }
+.loading-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: white;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.current-avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  background-color: white;
+}
+
 .avatar-large {
   width: 56px;
   border-radius: 50%;
