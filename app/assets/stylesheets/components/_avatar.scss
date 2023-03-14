@@ -17,6 +17,13 @@
   height: 200px;
   border-radius: 50%;
   background-color: white;
+  border: 1px solid black;
+  overflow: hidden;
+}
+
+.current-avatar img {
+  height: 200px;
+  width: 200px;
 }
 
 .avatar-large {

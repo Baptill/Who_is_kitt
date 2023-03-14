@@ -1,4 +1,4 @@
-<div class="content critical-animation" data-controller="pending" data-action="click->pending#playSound">
+<div class="content pending-screen" data-controller="pending" data-action="click->pending#playSound">
     <%= audio_tag("waiting.mp3", autoplay: true, :data => { :pending_target => 'audio'}) %>
     <div class="loading-pending mb-5">
       <h1>En attente de votre adversaire</h1>
@@ -8,14 +8,19 @@
 
   <div class="user-pending mt-5">
     <div class="item-playeur">
-      <div class="current-avatar"><%= current_user.photo.key %></div>
+      <div class="current-avatar">
+      <% if current_user.photo.key? %>
+            <%= cl_image_tag current_user.photo.key, crop: :fill %>
+          <% end %>
+      </div>
       <span><h2><%= current_user.nickname %></h2></span>
     </div>
-    <h1 class="vs">VS</h1>
-    <h1 class= "critical" >Coup Critique !</h1>
+    <h1 class="vs fight fight-catchline">VS</h1>
     <div class="item-playeur">
       <div class="loading-avatar"><h1 style="font-size: 120px">?</h1></div>
       <span><h2>Joueur 2</h2></span>
     </div>
   </div>
 </div>
+
+
