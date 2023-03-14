@@ -9,10 +9,8 @@
       <%= render partial: "active_game", locals: { game: @game } %>
     <% elsif @game.started? %>
       <%= render partial: "started_game", locals: { game: @game } %>
-    <% elsif @game.buzzer? %>
-      <%= render partial: "buzzer_game", locals: { game: @game } %>
     <% elsif @game.finished? %>
-
+      <%= render partial: "finished_game", locals: { game: @game } %>
     <% end %>
   </div>
 

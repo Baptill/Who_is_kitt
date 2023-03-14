@@ -1,9 +1,3 @@
-<%# DEBUT LOGO %>
-<%# <%= render "shared/logo" %>
-<%# FIN LOGO %>
-
-<%# <%= render 'buzzer_game' %>
-
 <% if @turn.player.user == current_user %>
   <h1>C'est votre tour  <%= @turn.player.user.nickname %></h1>
   <% else %>
@@ -139,11 +133,14 @@
       </div>
       <% end %>
   </div>
-</div>
 
-<!-- buzzer link -->
-<% if @turn.player.user == current_user %>
-  <div class="d-flex justify-content-center">
-    <%= url_for(controller: 'games', action: 'buzz', id: @sarted_game.id, active_player: true) %>
-    <%= link_to "Buzzer", game_buzzer_path(@game), method: :post, class: "btn btn-primary" %>
-  </div>
+  <% if @turn.player.user == current_user %>
+
+    <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center">
+        <%= link_to "Buzzer", buzz_game_path(@game), class: "btn btn-primary" %>
+      </div>
+    </div>
+
+  <% end %>
+</div>

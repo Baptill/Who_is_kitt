@@ -93,17 +93,39 @@ class GamesController < ApplicationController
   # si le joueur qui a buzzé a trouvé sa card guess alors il gagne la partie
   # sinon c'est l'autre joueur qui gagne la partie
   def buzz
-    @game = Game.find(params[:game])
-    @player = Player.find(params[:player])
-    @card = Card.find(params[:card])
+    # Trouver la partie
+    # Trouver mes cards actives
+    # Les afficher sur la page buzz
+    @game = Game.find(params[:id])
+    @player = Player.find(params[:id])
+    @player_cards = @player.cards.select { |card| card.active }
 
-    @player.update(guess: true)
+    redirect_to game_path(@game)
+  end
 
-    if @player.guess
-      @game.update(winner: @player)
-      @game.finished!
+  def save_winner
+    # Trouver la card guess de l'adversaire
+    # Vérifier que la card passée en params est bien la card guess de l'adversaire
+    # Si c'est le cas, alors le joueur qui a buzzé gagne la partie
+    # Sinon, l'autre joueur gagne la partie
+    # Updater le status des players => winner true ou false
+    # Changer le status de la partie
+    # Rediriger vers la show de la partie
+    @game = Game.find(params[:id])
+    @card = Card.find(params[:card_id])
+    @player = Player.find(params[:id])
+    @player_two = Player.find(params[:id])
+    @player_two_guess_card = @player_two.cards.find_by(guess: true)
+
+    if @card == @player.cards.find_by(guess: true)
+      @player.update(winner: true)
+      @player_two.update(winner: false)
+      @game.update(status: 'finished')
+    else
+      @player.update(winner: false)
+      @player_two.update(winner: true)
+      @game.update(status: 'finished')
     end
-
     redirect_to game_path(@game)
   end
 

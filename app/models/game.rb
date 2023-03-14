@@ -54,6 +54,14 @@ class Game < ApplicationRecord
     status == "started"
   end
 
+  def buzzer!
+    update(status: "buzzer")
+  end
+
+  def buzzer?
+    status == "buzzer"
+  end
+
   def finished!
     update(status: "finished")
   end
@@ -62,13 +70,6 @@ class Game < ApplicationRecord
     status == "finished"
   end
 
-  def buzzer!
-    update(status: "buzzer")
-  end
-
-  def buzzer?
-    status == "buzzer"
-  end
 
   private
 
