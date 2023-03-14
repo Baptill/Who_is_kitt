@@ -1,33 +1,26 @@
 <% if @turn.player.user == current_user %>
-    <div class="container game flex-row">
-        <%# <%= simple_form_for [@game, @characteristic_question],
-          html: {class: "d-flex width85"} do |f|
-        %>
-          <%# <%= f.association :characteristic,
-            as: :radio_buttons,
-            collection_wrapper_tag: 'div',
-            collection_wrapper_class: 'category-wrapper',
-            legend_tag: false,
-            item_wrapper_class: 'category-item',
-            input_html: {class: 'category-selector'},
-            collection: @characteristic_collection %>
-          <%# <%= f.submit "Send", class: "btn btn-danger " %>
-        <%# end %>
 
         <div id="dock-container">
           <div id="dock">
             <ul>
                 <% @characteristic_collection.each do |charac| %>
-                  <li>
-                    <span><%= charac.name %></span>
-                    <%= image_tag "icons/#{charac.name}.png", style:" height:45px" %>
-                  </li>
+                  <%= link_to game_characteristic_questions_path(@game, characteristic_id: charac.id), data: {turbo_method: :post} do %>
+                    <li>
+                      <span><%= charac.name %></span>
+                      <%= image_tag "icons/#{charac.name}.png", style:" height:45px" %>
+                    </li>
+                  <% end %>
+
                 <% end %>
+ <li>
+                      <span>BUZZER</span>
+                      <%= image_tag "icons/buzzer.png", style:" height:45px" %>
+                    </li>
             </ul>
           </div>
         </div>
 
-        <div>BUZZER</div>
+
       </div>
 <% end %>
 
