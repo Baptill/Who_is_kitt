@@ -1,8 +1,10 @@
-<% if @turn.player.user == current_user %>
-  <h1>C'est votre tour  <%= @turn.player.user.nickname %></h1>
-  <% else %>
-  <h1>C'est le tour de l'aversaire <%= @turn.player.user.nickname %></h1>
-<% end %>
+<%# DEBUT LOGO %>
+<%# <%= render "shared/logo" %>
+<%# FIN LOGO %>
+
+<%# <%= render 'buzzer_game' %>
+
+
  <%# DEBUT DU BG %>
 <div class="d-flex flex-column active-modal m-0" data-controller="game-logic">
 
@@ -91,7 +93,7 @@
           <% end %>
         <% end %>
       </div>
-      <div class="d-flex">
+      <div class="d-flex height300">
         <div class="d-flex container-chat"
           data-controller="game-subscription"
           data-game-subscription-game-id-value="">
@@ -107,6 +109,8 @@
                   <%= render "characteristic_questions/characteristic_question", char_question: char_question %>
                 <% end %>
               </div>
+
+
             </div>
 
        </div>
@@ -115,23 +119,10 @@
 
 </div>
 <%# Les characteristics %>
-<div class="card-tray">
-  <div class="d-flex">
-  <% if @turn.player.user == current_user %>
+<div class="card-tray w-100">
+  <div class="d-flex charac-questions">
+   <%= render 'characteristics' %>
 
-    <div class="container game">
-        <%= simple_form_for [@game, @characteristic_question],
-          html: {class: "d-flex"} do |f|
-        %>
-          <%= f.association :characteristic,
-            as: :radio_buttons,
-            collection: @characteristic_collection,
-            wrapper_html: {class: "flex-grow-1"}
-          %>
-          <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-        <% end %>
-      </div>
-      <% end %>
   </div>
 
   <% if @turn.player.user == current_user %>

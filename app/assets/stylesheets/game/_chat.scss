@@ -3,7 +3,7 @@
 }
 
 .game {
-  margin-top: 9px;
+  //margin-top: 9px;
    display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -16,7 +16,7 @@
   }
 
   .questions {
-    height: 350px;
+    height: 510px;
     overflow: scroll;
     padding: 0;
     width: 250px;
@@ -64,4 +64,15 @@
 
 
 
+}
+.charac-questions {
+  background-color: rgba($color: #FFFFFF, $alpha: 0.5);
+  border-radius: 20px;
+  margin-top: 20px;
+}
+.width85 {
+  width: 85%!important;
+}
+.height300 {
+  height: 300px !important;
 }
