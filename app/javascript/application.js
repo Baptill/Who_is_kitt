@@ -2,3 +2,6 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "bootstrap"
+import { criticalAnimation } from "./animations/criticalAnimation"
+
+criticalAnimation()
