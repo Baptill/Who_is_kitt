@@ -2,6 +2,7 @@
 <%# <%= render "shared/logo" %>
 <%# FIN LOGO %>
 
+<%# <%= render 'buzzer_game' %>
 
 <% if @turn.player.user == current_user %>
   <h1>C'est votre tour  <%= @turn.player.user.nickname %></h1>
@@ -35,6 +36,12 @@
           <div></div>
         </div>
         <span class="game-user-name"><%=  @player_one.user.nickname  %></span>
+        <% if @current_player.user == @player_two.user %>
+        <%# mini jeu adverse %>
+        <div class="d-flex justify-content-start">
+          <%= render "games/mini_game_player2" %>
+        </div>
+        <% end %>
       </div>
     </div>
 
@@ -62,9 +69,13 @@
 
         <span class="game-user-name text-end"><%=  @player_two.user.nickname  %></span>
 
+        <% if @current_player.user == @player_one.user %>
+        <%# mini jeu adverse %>
         <div class="d-flex justify-content-end">
           <%= render "games/mini_game_player2" %>
         </div>
+        <% end %>
+
       </div>
       <% if @player_two.user.photo.key? %>
         <%= cl_image_tag  @player_two.user.photo.key, crop: :fill, class: "avatar-bordered dropdown-toggle imgbig", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
