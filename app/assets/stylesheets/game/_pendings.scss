@@ -26,3 +26,117 @@
   border-radius: 5px;
   background-color: red;
 }
+
+.category-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.category-item {
+  flex: 0 0 11%;
+  display: flex;
+  justify-content: center;
+}
+
+.category-selector {
+  position: absolute;
+  transform: scale(0);
+}
+
+.category-selector + label {
+  display: block;
+  cursor: pointer;
+  box-sizing: border-box;
+  width: 80px;
+  height: 80px;
+  font-size: 12px;
+  text-align: center;
+  //padding: 10px 10px 30px 10px;
+  border: 1px solid red;
+  border-radius: 50%;
+  background-color: white;
+}
+
+.category-selector:checked + label {
+  color: white !important;
+  background-color: red;
+}
+
+
+#snippet_category_ruby + label {
+  color: #FD1015;
+}
+
+#snippet_category_ruby:checked + label {
+  background-color: #FD1015;
+  border-color: #FD1015;
+}
+
+
+#snippet_category_javascript + label {
+  color: #FFC65A;
+}
+
+#snippet_category_javascript:checked + label {
+  background-color: #FFC65A;
+  border-color: #FFC65A;
+}
+
+
+#snippet_category_css + label {
+  color: #62DDF5;
+}
+
+#snippet_category_css:checked + label {
+  background-color: #62DDF5;
+  border-color: #62DDF5;
+}
+#dock-container {
+  position: fixed;
+  bottom: 0;
+  text-align: center;
+  right: 23%;
+  left: 5%;
+  width: 72%;
+  background: rgba(255,255,255,0.2);
+  border-radius: 10px 10px 0 0;
+}
+#dock-container li {
+  list-style-type: none;
+  display: inline-block;
+  position: relative;
+}
+
+#dock-container li img {
+  width: 45px;
+  height: 45px;
+  -webkit-box-reflect: below 2px
+  -webkit-gradient(linear, left top, left bottom, from(transparent),
+  color-stop(0.7, transparent), to(rgba(255,255,255,.5)));
+  -webkit-transition: all 0.3s;
+  -webkit-transform-origin: 50% 100%;
+}
+#dock-container li:hover img {
+  -webkit-transform: scale(2);
+  margin: 0 2em;
+}
+#dock-container li:hover + li img,
+#dock-container li.prev img {
+  -webkit-transform: scale(1.5);
+  margin: 0 1.5em;
+}
+#dock-container li span {
+  display: none;
+  position: absolute;
+  bottom: 140px;
+  left: 0;
+  width: 100%;
+  background-color: rgba(0,0,0,0.75);
+  padding: 4px 0;
+  border-radius: 12px;
+}
+#dock-container li:hover span {
+  display: block;
+  color: #fff;
+}
