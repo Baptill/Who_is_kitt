@@ -12,14 +12,10 @@ class GamesController < ApplicationController
 
     @card.update(guess: true)
 
-    # si les deux joueurs ont choisi leur personnage
-    # alors on redirige vers la partial started_game
     @game.started! if @game.players.first.cards.find_by(guess: true) && @game.players.last.cards.find_by(guess: true)
-
     redirect_to game_path(@game)
   end
 
-  # la méthode move gère le gameplay réel
   def move
     @end = false
     @game = Game.find(params[:game])
@@ -88,44 +84,45 @@ class GamesController < ApplicationController
     @characteristics = Characteristic.all
   end
 
-  # créer une méthode permettant de buzzer pour trouver sa card guess
-  # le buzz n'apparaît qu'à partir du second tour
-  # si le joueur qui a buzzé a trouvé sa card guess alors il gagne la partie
-  # sinon c'est l'autre joueur qui gagne la partie
   def buzz
-    # Trouver la partie
-    # Trouver mes cards actives
-    # Les afficher sur la page buzz
     @game = Game.find(params[:id])
     @player = Player.find(params[:id])
     @player_cards = @player.cards.select { |card| card.active }
-
-    redirect_to game_path(@game)
+    @current_player = current_user.active_player(@game)
   end
 
   def save_winner
-    # Trouver la card guess de l'adversaire
-    # Vérifier que la card passée en params est bien la card guess de l'adversaire
-    # Si c'est le cas, alors le joueur qui a buzzé gagne la partie
-    # Sinon, l'autre joueur gagne la partie
-    # Updater le status des players => winner true ou false
-    # Changer le status de la partie
-    # Rediriger vers la show de la partie
     @game = Game.find(params[:id])
     @card = Card.find(params[:card_id])
-    @player = Player.find(params[:id])
-    @player_two = Player.find(params[:id])
+    @player_one = @game.players.first
+    @player = @current_player
+    @player_two = @game.players.last
     @player_two_guess_card = @player_two.cards.find_by(guess: true)
 
-    if @card == @player.cards.find_by(guess: true)
-      @player.update(winner: true)
-      @player_two.update(winner: false)
-      @game.update(status: 'finished')
-    else
-      @player.update(winner: false)
-      @player_two.update(winner: true)
-      @game.update(status: 'finished')
+    if current_user == @player_one.user
+      if @card == @player_two.cards.find_by(guess: true)
+        @player_one.update(winner: true)
+        @player_two.update(winner: false)
+        @game.update(status: 'finished')
+      else
+        @player_one.update(winner: false)
+        @player_two.update(winner: true)
+        @game.update(status: 'finished')
+      end
     end
+
+    if current_user == @player_two.user
+      if @card == @player_one.cards.find_by(guess: true)
+        @player_one.update(winner: true)
+        @player_two.update(winner: false)
+        @game.update(status: 'finished')
+      else
+        @player_one.update(winner: false)
+        @player_two.update(winner: true)
+        @game.update(status: 'finished')
+      end
+    end
+
     redirect_to game_path(@game)
   end
 
@@ -144,16 +141,3 @@ class GamesController < ApplicationController
     @game = Game.find(params[:id])
   end
 end
-
-# DEROULEMENT D'UNE GAME
-
-# les deux sont sur la started game
-# par défault c'est le joueur qui a créé la partie qui commence
-# le joueur 1 pose sa question dans le chat (en cliquant sur l'attribut correspondant)
-# le joueur 2 répond oui/non dans le chat
-# en fonction de la réponse du joueur 2, les cartes conçernées se désactivent sur le plateau du joueur 1
-# c'est au joueur 2 de poser sa question
-# au début du 3eme tour les joueurs peuvent buzzer pour trouver leur personnage
-# un des joueurs buzz
-# sa réponse est bonne, il gagne la partie, on lui ajoute des points
-# sa réponse est fausse, il perd la partie
