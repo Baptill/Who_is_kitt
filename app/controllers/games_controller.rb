@@ -43,6 +43,7 @@ class GamesController < ApplicationController
     @player_two_active_cards = @player_two_cards.select { |card| card.active }
     # on récupère toutes les cartes du joueur qui commence qui sont des guess
     @player_guess_card = @player_one_cards.find_by(guess: true)
+    @player_guess_card_two = @player_two_cards.find_by(guess: true)
   end
 
   def ask_characteristic

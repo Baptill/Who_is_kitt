@@ -1,7 +1,7 @@
 class CharacteristicQuestionsController < ApplicationController
   def create
     @game = Game.find(params[:game_id])
-    @characteristic_question = CharacteristicQuestion.new(characteristic_question_params)
+    @characteristic_question = CharacteristicQuestion.new(characteristic_id: params[:characteristic_id])
     @characteristic_question.game = @game
     @characteristic_question.player = Player.find_by(user: current_user, game: @game)
 
