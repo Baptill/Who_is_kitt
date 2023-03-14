@@ -1,0 +1,23 @@
+<div class="container d-flex flex-column justify-content-center align-items-center height100vh">
+
+  <div class="d-flex flex-column mb-3 active-modal ">
+    <h1>BUUUUUUUUUUUZZZZZZZZZZZEEEEEEEEEERRRRRRRRRRRRR</h1>
+      <h3>A quel personnage pensez vous ?</h3>
+      <p>Si vous trouvez la bonne carte, vous gagnez 100 points ! Sinon c'est perdu !</p>
+        <div class="container game">
+          <div class="card-tray w-100">
+            <% @current_player.cards.each do |card| %>
+              <% if card.active == true %>
+              <div class= "cardbuzzer">
+              <%= card.guess %>
+                <%= link_to save_winner_game_path(@game, card_id: card.id), data: { turbo_method: :patch } do %>
+                <%= cl_image_tag card.character.photo.key, width: 96, height: 190, crop: :fill %>
+                <% end  %>
+              </div>
+                <% end %>
+            <% end %>
+          </div>
+        </div>
+  </div>
+
+</div>

@@ -7,9 +7,10 @@ Rails.application.routes.draw do
     member do
       get :shifoumi
       get :invite
-      patch :save_winner
       patch :select_character
       post :save_character
+      get :buzz
+      patch :save_winner
     end
   end
   resource :dashboard, only: :show
