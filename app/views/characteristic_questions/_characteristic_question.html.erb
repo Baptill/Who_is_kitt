@@ -1,16 +1,29 @@
-<div
+ <div
   id="question-<%= char_question.id %>"
   class="<%= current_user == char_question.player.user ? 'bg-grey' : 'bg-cream' %>"
 >
-  <code>
-    <strong><%= char_question.player.user.nickname %> demande si votre personnage possède :</strong>
-  </code>
-  <p><b><%= char_question.characteristic.name %>
   <% if current_user == char_question.player.user %>
+    <code>
+      <strong>vous demandez :</strong>
+    </code>
   <% else %>
-    <div class="d-flex">
-      <%= link_to "OUI", characteristic_question_path(char_question, answer: true), data: {turbo_method: :patch}, class: "btn btn-success" %>
-      <%= link_to "NON", characteristic_question_path(char_question, answer: false), data: {turbo_method: :patch}, class: "btn btn-danger" %>
-    </div>
+    <code>
+        <strong><%= char_question.player.user.nickname %> demande :</strong>
+    </code>
   <% end %>
+
+  <p><b><%= char_question.characteristic.name %></b></p>
+
+    <% if current_user != char_question.player.user && char_question.answer == nil %>
+      <% if char_question.answer == nil %>
+        <div class="d-flex">
+          <%= link_to "OUI", characteristic_question_path(char_question, answer: true), data: {turbo_method: :patch}, class: "btn btn-success" %>
+          <%= link_to "NON", characteristic_question_path(char_question, answer: false), data: {turbo_method: :patch}, class: "btn btn-danger" %>
+        </div>
+      <% end %>
+    <% end %>
+    <% if char_question.answer != nil %> reponse donée :  <% if char_question.answer == true %> Oui <% else %> Non <% end %>
+    <% else %>
+      <% if  current_user == char_question.player.user %> En attente de réponse <% end %>
+    <% end %>
 </div>

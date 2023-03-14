@@ -1,25 +1,37 @@
-<div class="d-flex flex-column mb-3 active-modal ">
-<h2>Choisis la carte a faire deviner</h2>
-  <div class="container game">
-  <% current_user.active_player(@game).cards.each do |card| %>
-  <%= link_to card.character.name, select_character_game_path(game: @game, id: card.id), data: {turbo_method: :patch} %>
-  <% end %>
+<div class="container d-flex flex-column justify-content-center align-items-center height100vh">
 
+  <div class="d-flex flex-column mb-3 active-modal ">
+    <h2>Le joueur 2 a rejoint la partie !</h2>
+    <h3>Merci de choisier la carte a faire deviner</h3>
+    <div class="container game">
+     <div class="">
+      <% current_user.active_player(@game).cards.each do |card| %>
+        <%= link_to select_character_game_path(game: @game, id: card.id), data: {turbo_method: :patch} do %>
 
-  <div class="player-one-deck container text-center">
-    <div class="card-tray">
-      <% @player_one_cards.shuffle.each do |card| %>
-        <% if card.active == true %>
-        <div class= "card">
-          <%= cl_image_tag card.character.photo.key, width: 103, height: 190, crop: :fill %>
-          <%= card.character.name %>
-        </div>
-        <% else %>
-          <%= cl_image_tag card.character.photo.key, width: 103, height: 190, crop: :fill, class: "disactive-card radius" %>
+             <%= cl_image_tag card.character.photo.key, width: 100, height: 190, crop: :fill %>
+
         <% end %>
-        <div><%= card.guess%> </div>
-        <div style="font-size:12px; margin:0"><% if card.active == true %><% else %><% end %> </div>
       <% end %>
     </div>
+            <%# <%= cl_image_tag card.character.photo.key, width: 103, height: 190, crop: :fill, class: "disactive-card radius" %> %>
+
+      <div class="player-one-deck container text-center">
+        <div class="card-tray">
+          <% @player_one_cards.shuffle.each do |card| %>
+            <% if card.active == true %>
+            <div class= "card">
+              <%= cl_image_tag card.character.photo.key, width: 103, height: 190, crop: :fill %>
+              <%= card.character.name %>
+            </div>
+            <% else %>
+              <%= cl_image_tag card.character.photo.key, width: 103, height: 190, crop: :fill, class: "disactive-card radius" %>
+            <% end %>
+            <div><%= card.guess%> </div>
+            <div style="font-size:12px; margin:0"><% if card.active == true %><% else %><% end %> </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>

@@ -12,7 +12,7 @@
 }
 
 .active-modal {
-  background: url('BG/game_bg1.png') no-repeat center center;
+  //background: url('BG/game_bg1.png') no-repeat center center;
   background-size: contain 100%;
   border-radius: 0px;
   margin: 0 auto;
@@ -38,7 +38,7 @@
 .card {
   display: flex;
   width: 80px;
-  height: 175px;
+  height: auto;
   margin: 2px;
   padding: 3px;
   align-items: center;
@@ -46,7 +46,18 @@
   border-radius: 5px;
 
 }
-
+.disactive-card {
+  opacity: 0.3;
+  display: flex;
+  width: 80px;
+  height: auto;
+  margin: 2px;
+  padding: 3px;
+  align-items: center;
+  align-content: end;
+  border-radius: 5px;
+  background-color: red;
+}
 
 .card img {
   width: 100%;
@@ -63,6 +74,10 @@
 .mini-card-false {
   width: 10px;
   height: 15px;
-  background-color: red;
+  background-color:#FFF;
   margin: 5px 2px;
+}
+
+.red {
+  background-color:red
 }

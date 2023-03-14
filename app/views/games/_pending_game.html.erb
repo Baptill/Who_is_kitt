@@ -1,10 +1,23 @@
+   <div class="container d-flex flex-column justify-content-center align-items-center height100vh">
+    <h1>En attente de votre adversaire ...</h1>
+    <span>Rappel du lien de jeu : htts://localhost:3000/games/<%= @game.id %>/</span>
+      <div class="spinner-border" role="status">
+      <div><%= %></div>
+      <span class="sr-only">Waiting for player 2</span>
+    </div>
+    <div class="rubik-loader"></div>
+  </div>
+
+<%#
 <div class="d-flex flex-column mb-3 pending-modal w-50 ">
   <div class="p-2">
     <h2>En attente de votre adversaire ...</h2>
   </div>
 
   <div class="spinner-border" role="status">
-    <div><%= %></div>
+    <div></div>
     <span class="sr-only">Waiting for player 2</span>
   </div>
-</div>
+
+
+</div> %>

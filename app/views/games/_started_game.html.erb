@@ -4,10 +4,11 @@
 
 
 <% if @turn.player.user == current_user %>
-  <h1>C'est ton tour bouffon</h1>
+  <h1>C'est votre tour  <%= @turn.player.user.nickname %></h1>
+  <% else %>
+  <h1>C'est le tour de l'aversaire <%= @turn.player.user.nickname %></h1>
 <% end %>
-
-<%# DEBUT DU BG %>
+ <%# DEBUT DU BG %>
 <div class="d-flex flex-column active-modal m-0" data-controller="game-logic">
 
   <div class="game-status">
@@ -18,8 +19,19 @@
       <% end %>
 
       <div class="d-flex flex-column justify-content-start gap-2 w-100">
- 
-        <div class="round-time-bar animate-timer" data-game-logic-target="timeBar">
+
+
+<% if @turn.player.user == @player_one.user || @turn.player.user == @player_one.user %>
+<%# Si tour de player 1, alors on met la barre et bloque la 2 %>
+
+<div class="round-time-bar animate-timer" data-game-logic-target="timeBar">
+<% else %>
+
+<%# Si tour de player 2, alors on bloque la barre1  et lance la 2 %>
+<div class="round-time-bar animate-timerOFF" data-game-logic-target="timeBar">
+<% end %>
+
+        <%# <div class="round-time-bar animate-timer" data-game-logic-target="timeBar"> %>
           <div></div>
         </div>
         <span class="game-user-name"><%=  @player_one.user.nickname  %></span>
@@ -35,19 +47,17 @@
     <!-- Player Two -->
     <div class="d-flex w-100 gap-4">
       <div class="d-flex flex-column gap-2 w-100">
-        <div class="round-time-bar animate-timer-player2" data-game-logic-target="timeBar">
- 
+
+ <% if @turn.player.user == @player_two.user && @turn.player.user == @player_two.user %>
+<%# Si tour de player 1, alors on met la barre et bloque la 2 %>
+
+<div class="round-time-bar animate-timer-player2 " data-game-logic-target="timeBar">
+<% else %>
+
+<%# Si tour de player 2, alors on bloque la barre1  et lance la 2 %>
+<div class="round-time-bar animate-time-player2OFF" data-game-logic-target="timeBar">
+<% end %>
             <div></div>
-        </div>
-        <div class="d-flex">
-          <% if @player_two.user == current_user %>
-            <h1 class="<%= 'active' if @player_two.user == current_user %>"><%= @player_two.user.nickname %></h1>
-          <% else %>
-            <%= @player_two.user.nickname %>
-          <% end %>
- 
-      
- 
         </div>
 
         <span class="game-user-name text-end"><%=  @player_two.user.nickname  %></span>
@@ -64,14 +74,13 @@
 
   <div class="player-one-deck container text-center">
       <div class="card-tray">
- 
+
         <% @current_player.cards.each do |card| %>
- 
+
           <% if card.active == true %>
           <div class= "card">
             <%= cl_image_tag card.character.photo.key, width: 103, height: 190, crop: :fill %>
-            <%= card.character.name %>
-          </div>
+           </div>
           <% else %>
             <%= cl_image_tag card.character.photo.key, width: 103, height: 190, crop: :fill, class: "disactive-card radius" %>
           <% end %>
@@ -94,7 +103,7 @@
                 <% end %>
               </div>
             </div>
- 
+
        </div>
     </div>
   </div>
@@ -103,6 +112,8 @@
 <%# Les characteristics %>
 <div class="card-tray">
   <div class="d-flex">
+  <% if @turn.player.user == current_user %>
+
     <div class="container game">
         <%= simple_form_for [@game, @characteristic_question],
           html: {class: "d-flex"} do |f|
@@ -115,19 +126,6 @@
           <%= f.submit "Send", class: "btn btn-primary mb-3" %>
         <% end %>
       </div>
+      <% end %>
   </div>
 </div>
-<% if @turn.player.user == current_user %>
-  <div class="container game">
-    <%= simple_form_for [@game, @characteristic_question],
-      html: {class: "d-flex"} do |f|
-    %>
-      <%= f.association :characteristic,
-        as: :radio_buttons,
-        collection: @characteristic_collection,
-        wrapper_html: {class: "flex-grow-1"}
-      %>
-      <%= f.submit "Send", class: "btn btn-primary mb-3" %>
-    <% end %>
-  </div>
-<% end %>
