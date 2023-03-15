@@ -4,25 +4,25 @@
 >
   <% if current_user == char_question.player.user %>
     <code>
-      <strong>vous demandez :</strong>
+      <span class="ask">Vous demandez :</span>
     </code>
   <% else %>
     <code>
-        <strong><%= char_question.player.user.nickname %> demande :</strong>
+        <span class="ask"><%= char_question.player.user.nickname %> Demande :</span>
     </code>
   <% end %>
 
-  <p><b><%= char_question.characteristic.name %></b></p>
+  <span class="type-attribute"><p><b><%= char_question.characteristic.name %></b> ?</p></span>
 
     <% if current_user != char_question.player.user && char_question.answer == nil %>
       <% if char_question.answer == nil %>
-        <div class="d-flex">
+        <div class="d-flex btn-yn">
           <%= link_to "OUI", characteristic_question_path(char_question, answer: true), data: {turbo_method: :patch}, class: "btn btn-success" %>
           <%= link_to "NON", characteristic_question_path(char_question, answer: false), data: {turbo_method: :patch}, class: "btn btn-danger" %>
         </div>
       <% end %>
     <% end %>
-    <% if char_question.answer != nil %> reponse donée :  <% if char_question.answer == true %> Oui <% else %> Non <% end %>
+    <% if char_question.answer != nil %> Réponse donnée :  <% if char_question.answer == true %> Oui <% else %> Non <% end %>
     <% else %>
       <% if  current_user == char_question.player.user %> En attente de réponse <% end %>
     <% end %>

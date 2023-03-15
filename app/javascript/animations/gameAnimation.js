@@ -17,6 +17,7 @@ const gameAnimation = () => {
     const pending = document.querySelector(".critical")
 
     gsap.from(pending, {
+      delay: 2.0,
       duration: 1.0,
       scale: 10,
       opacity:0,

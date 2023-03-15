@@ -90,26 +90,105 @@
   display: flex;
 }
 
+.card-tray-wrapper {
+  transform-style: preserve-3d;
+  perspective: 2000px;
+  transform:scale(0.8)
+}
+
+
 .card-tray {
-  display: flex;
-  flex-wrap: wrap;
-  width: 80%;
-  justify-content: center;
-  align-content: end;
+  display:grid;
+  grid-template-columns: repeat(8, 1fr);
+  transform: rotateX(25deg) translate3d(0, 50px, 0);
+  transform-style: preserve-3d;
+  //background-image: url("plateau.png");
+  //background-position: center;
+  //background-size: cover;
+  background:$red;
+  gap: 8px;
+  border-radius:8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 72px 48px;
+  min-width: 950px;
 }
 
 .card {
   display: flex;
-  width: 110px;
-  height: 166px;
-  margin: 2px;
-  padding: 3px;
-  align-items: center;
+  width: 100%;
+  height: 165px;
   align-content: end;
-  border-radius: 5px;
-
-
+  border-radius: 3px;
+  transform: rotateX(-30deg) translate3d(0, -70px, 0);
+  transition: .3s;
+  transform-style: preserve-3d;
+  backface-visibility: visible;
+  background: none;
+  border: none;
+  transform-origin: bottom center;
+  perspective: 1000px;
+  .card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+  }
+  .card-front {
+    border-radius:8px 8px 0 0;
+    padding:4px;
+    transform: rotateX(0deg) translate3d(0, -58%, 0);
+    transition:.3s;
+    width: 100%;
+    min-width: 100px;
+    height: 100%;
+    background: linear-gradient(white, white 3%, #a5a39c 3%, #d3d2cd 5%, white 90%, #cdcac0 90%, #f0efe5 97%, white 98%);
+  }
+  .card-back {
+    background:none;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    color: white;
+    transform: rotateY(180deg);
+  }
+  .card-shadow {
+    position: absolute;
+    width: 100%;
+    transform: rotateX(-152deg) translate3d(0, -40px, 0);
+    height: 100%;
+    background-color: $red;
+    border-radius: 8px;
+    box-shadow: inset 0px 0.8vmin 0.8vmin rgba(77, 18, 18, 0.3), inset 0px -2px 5px rgba(148, 5, 5, 0.15), 0px 2px 2px rgba(255, 212, 170, 0.15);
+  }
 }
+
+.card:hover .card-front {
+  transform: rotateX(-10deg) translate3d(0, -58%, 0);
+  transition:.3s;
+}
+
+.card-tray-wrapper-disactive {
+  .card-front {
+    transform: scaleY(0.90) scaleX(0.95) rotateX(-148deg) translate3d(0, -57px, -3vmin) !important;
+    // Remplacer par une image
+    background: url("back_card.png");
+    background-size: cover;
+    box-shadow: inset 0px 0.8vmin 0.8vmin rgba(77, 18, 18, 0.3), inset 0px -2px 5px rgba(148, 5, 5, 0.15), 0px 2px 2px rgba(255, 212, 170, 0.15);
+    background-position: center;
+  }
+  img {
+    display:none;
+  }
+  .card-shadow {
+    display:none;
+  }
+  .card-back {
+    display: none;
+  }
+}
+
 .disactive-card {
   opacity: 0.3;
   display: flex;
@@ -132,7 +211,8 @@
 .mini-card {
   width: 10px;
   height: 15px;
-  background-color: blue;
+  background: url("mini_back_card.png");
+  background-size: cover;
   margin: 5px 2px;
 }
 
@@ -144,7 +224,7 @@
 }
 
 .red {
-  background-color:red
+  opacity: 0.2;
 }
 
 
@@ -152,4 +232,17 @@
   background-color: rebeccapurple;
 
 
+}
+
+.active-view h1 {
+  color: $yellow;
+}
+
+.active-view h2 {
+  color: $yellow;
+}
+
+.active-view h3 {
+  color: $yellow;
+  padding-bottom: 80px;
 }
