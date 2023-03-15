@@ -7,6 +7,7 @@ class DashboardsController < ApplicationController
     @games = @user.games
     @new_game = Game.new
     @pending_game = @games.where(status: 'pending').last
+    @new_id_game = Game.last.id
   end
 
   private

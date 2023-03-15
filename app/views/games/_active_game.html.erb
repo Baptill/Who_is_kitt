@@ -1,7 +1,11 @@
 <div class="container d-flex flex-column justify-content-center align-items-center height100vh">
 
   <div class="d-flex flex-column mb-3 active-modal ">
+<% if @current_user.id == @player_one.user_id %>
     <h2>Le joueur 2 a rejoint la partie !</h2>
+    <% else %>
+    <h2>Bienvenue joueur 2 !</h2>
+    <% end %>
     <h3>Merci de choisier la carte a faire deviner</h3>
       <div class="container game">
         <div>
