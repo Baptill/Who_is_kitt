@@ -15,6 +15,7 @@
               <%= card.guess %>
                 <%= link_to save_winner_game_path(@game, card_id: card.id), data: { turbo_method: :patch } do %>
                 <%= cl_image_tag card.character.photo.key, width: 96, height: 190, crop: :fill %>
+                <%= card.id %>
                 <% end  %>
               </div>
                 <% end %>

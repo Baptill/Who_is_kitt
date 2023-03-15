@@ -5,8 +5,7 @@ current user : <%= @current_user.id %> <br>
 playeur 1 : <%= @player_one.user_id %> - <%= @player_one.user.nickname %> <br>
 playeur 2 : <%= @player_two.user_id %> - <%= @player_two.user.nickname %> <br>
 winner : p1 <%= @player_one.winner %> | p2 <%= @player_two.winner %> <br>
-Carte à trouver playeur 1  <%= @player_one_guess_card.character.name %> | carte choisie ::<%= @card %> <br>
-Carte à trouver playeur 2  <%= @player_two_guess_card.character.name %> | carte choisie <%= @card %> <br>
+
 <br><br><br>
 <% if @current_user.id == @player_one.user_id %>
   <% if @player_one.winner == true %>
@@ -27,7 +26,7 @@ Carte à trouver playeur 2  <%= @player_two_guess_card.character.name %> | carte
    <% else %>
   <p>Désolé <b><%= @player_two.user.nickname%></b> tu as perdu </p>
   <% end %>
-
 <% end %>
+
   </div>
 </div>

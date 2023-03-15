@@ -3,6 +3,7 @@ class GamesController < ApplicationController
   before_action :set_game, only: [:invite, :shifoumi, :save_winner, :save_character, :show]
 
   def game
+
     @new_game = Game.new
     @games = Game.all
     # recuperer la partie lancée et rediriger vers la pending avec cet ID
@@ -76,6 +77,11 @@ class GamesController < ApplicationController
     @player_two_active_cards = @player_two_cards.select { |card| card.active }
     @player_two_guess_card = @player_two_cards.find_by(guess: true)
 
+    @player_two_select_card = @player_two_cards.find_by(select: true)
+    @player_one_select_card = @player_one_cards.find_by(select: true)
+
+
+
     @game.active! if @game.players.count > 1 && @game.pending?
 
     puts "#########################"
@@ -96,17 +102,36 @@ class GamesController < ApplicationController
     @player_cards = @player.cards.select { |card| card.active }
     @current_player = current_user.active_player(@game)
     @game.buzzer!
+
     redirect_to game_path(@game)
+
+
+
+
+
   end
 
   def save_winner
 
-    puts "Salut"
+    @current_player = current_user.active_player(@game)
+
+    puts "#########################"
+    puts params
+    puts "#########################"
+    @testeur = "Salut"
     @game = Game.find(params[:id])
-    @card = Card.find(params[:id])
+    @card = Card.find(params[:card_id])
+    @card.update(select: true)
+
+
+
     @player_one = @game.players.first
     @player_two = @game.players.last
     @player_two_guess_card = @player_two.cards.find_by(guess: true)
+    @player_one_cards = @player_one.cards
+    @player_one_select_card = @player_one_cards.find_by(select: true)
+    @select_player_one = @player_one_select_card.character.name
+    @guess_player_two = @player_two_guess_card
     # sur la page _buzz.html.erb récupérer la valeur de la carte séléctionnée par le joueur qui a buzzé
     # et la comparer à la valeur de la carte du joueur qui a buzzé
     # si la valeur est la même alors le joueur qui a buzzé gagne
@@ -114,9 +139,9 @@ class GamesController < ApplicationController
     # si le joueur qui a buzzé gagne alors on ajoute 1 point au score du joueur qui a buzzé
     # sinon on ajoute 100 points au score du joueur qui a buzzé
 
-    if current_user == @player_one.user
-      if @card == @player_two.cards.find_by(guess: true)
-        @player_one.update(winner: true)
+     if @current_player.user.nickname == @player_one.user.nickname
+      if @select_player_one == @guess_player_two
+        @player_one.user.nickname.update(winner: true)
         @player_two.update(winner: false)
         @game.update(status: 'finished')
       else
@@ -125,27 +150,9 @@ class GamesController < ApplicationController
         @game.update(status: 'finished')
       end
     end
-
-    if current_user == @player_two.user
-      puts "Salut"
-      if @card == @player_one.cards.find_by(guess: true)
-        @player_one.update(winner: true)
-        @player_two.update(winner: false)
-        # ajouter 100 points au score du user
-        @current_user.score += 100
-        @current_user.save
-        @game.update(status: 'finished')
-      else
-        @player_one.update(winner: false)
-        @player_two.update(winner: true)
-        @current_user.score += 100
-        @current_user.save
-        @game.update(status: 'finished')
-      end
-    end
-
     GameChannel.broadcast_to(@game, true)
     head :ok
+    # render :show, locals: { card: @card }
   end
 
   def create
