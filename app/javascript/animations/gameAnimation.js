@@ -31,21 +31,20 @@ const gameAnimation = () => {
   }
 
 
-  //Buzzer animation
-  if(document.querySelector(".buzzer")) {
-    const buzzer = document.querySelector(".critical")
+  // //Buzzer animation
+  // if(document.querySelector(".buzzer")) {
+  //   const buzzer = document.querySelector(".critical")
 
-    gsap.from(buzzer, {
-      duration: 1.0,
-      scale: 10,
-      opacity:0,
-      ease:"power4.out",
-    })
-    setTimeout(() => {
-      buzzer.style.display = "none"
-      }, 3000);
-  }
+  //   gsap.from(buzzer, {
+  //     duration: 1.0,
+  //     scale: 10,
+  //     opacity:0,
+  //     ease:"power4.out",
+  //   })
+  //   setTimeout(() => {
+  //     buzzer.style.display = "none"
+  //     }, 3000);
+  // }
 }
 
 export { gameAnimation }
-

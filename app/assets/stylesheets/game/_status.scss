@@ -23,8 +23,16 @@
   justify-content: center;
 }
 
+.loading-pending h1 {
+  color: $yellow;
+}
+
+.user-pending h2 {
+  color: $yellow;
+}
+
 .loading-pending h3 {
-  color: black;
+  color: $yellow;
 }
 
 .vs {
