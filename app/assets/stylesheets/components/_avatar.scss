@@ -3,27 +3,28 @@
   border-radius: 50%;
 }
 .loading-avatar {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   background-color: white;
   align-items: center;
   justify-content: center;
   display: flex;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .current-avatar {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   border-radius: 50%;
   background-color: white;
-  border: 1px solid black;
   overflow: hidden;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
 }
 
 .current-avatar img {
-  height: 200px;
-  width: 200px;
+  height: 100%;
+  width: 100%;
 }
 
 .avatar-large {
