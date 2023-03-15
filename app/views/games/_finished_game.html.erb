@@ -1,32 +1,14 @@
 <div class="d-flex flex-column mb-3 pending-modal w-50 ">
   <div class="p-2">
+  <%= @current_user.nickname %> | <%= @current_player.user.nickname %> <br>
+    <%= @player_one.user.nickname %> | <%=  @player_two.user.nickname  %>
+ <br>
+WINNER : <%= @player_one.winner %> | <%=  @player_two.winner  %>
+<br>
 
-current user : <%= @current_user.id %> <br>
-playeur 1 : <%= @player_one.user_id %> - <%= @player_one.user.nickname %> <br>
-playeur 2 : <%= @player_two.user_id %> - <%= @player_two.user.nickname %> <br>
-winner : p1 <%= @player_one.winner %> | p2 <%= @player_two.winner %> <br>
 
-<br><br><br>
-<% if @current_user.id == @player_one.user_id %>
-  <% if @player_one.winner == true %>
-    Bravo <b><%= @player_one.user.nickname%></b> tu as gagné<br>
-    La carte était bien #carte<br>
-    Tu gagnes 100 points ! <br>
-    Ton score est de #score <br>
-  <% else %>
-  <p>Désolé <b><%= @player_one.user.nickname%></b> tu as perdu </p>
-  <% end %>
-
-<% elsif @current_user.id == @player_two.user_id  %>
-  <% if @player_two.winner == true %>
-    Bravo <b><%= @player_two.user.nickname%></b> tu as gagné<br>
-    La carte était bien #carte<br>
-    Tu gagnes 100 points ! <br>
-    Ton score est de <%= current_user.score %><br>
-   <% else %>
-  <p>Désolé <b><%= @player_two.user.nickname%></b> tu as perdu </p>
-  <% end %>
-<% end %>
+<br>
+charte select : <%= @card %> || carte : <%= @guess_player_two %>
 
   </div>
 </div>
