@@ -104,19 +104,15 @@ class GamesController < ApplicationController
 
     @current_player = current_user.active_player(@game)
 
-    puts "#########################"
-    puts params
-    puts "#########################"
-    @testeur = "Salut"
-    @game = Game.find(params[:id])
-    @card = Card.find(params[:card_id])
-    @card.update(select: true)
     @player_one = @game.player_one
     @player_two = @game.player_two
+    @game = Game.find(params[:id])
+    @card = Card.find(params[:card_id])
+
+    @player_one_guess_card = @player_one.cards.find_by(guess: true)
     @player_two_guess_card = @player_two.cards.find_by(guess: true)
     @player_one_cards = @player_one.cards
-    @player_one_select_card = @player_one_cards.find_by(select: true)
-    @guess_player_two = @player_two_guess_card
+
     # sur la page _buzz.html.erb récupérer la valeur de la carte séléctionnée par le joueur qui a buzzé
     # et la comparer à la valeur de la carte du joueur qui a buzzé
     # si la valeur est la même alors le joueur qui a buzzé gagne
@@ -125,33 +121,24 @@ class GamesController < ApplicationController
     # sinon on ajoute 100 points au score du joueur qui a buzzé
 
     if @current_player == @player_one
-      if @card == @player_one_select_card
+      if @card.character_id == @player_two_guess_card.character_id
         @player_one.update(winner: true)
         @player_two.update(winner: false)
-        @game.update(status: 'finished')
-      end
-    elsif @current_player == @player_two
-      if @card == @player_two_select_card
+      else
         @player_one.update(winner: false)
         @player_two.update(winner: true)
-        @game.update(status: 'finished')
       end
-    else
-      puts "Briag a laché une caisse"
+      @game.update(status: 'finished')
+    elsif @current_player == @player_two
+      if @card.character_id == @player_one_guess_card.character_id
+        @player_one.update(winner: false)
+        @player_two.update(winner: true)
+      else
+        @player_one.update(winner: true)
+        @player_two.update(winner: false)
+      end
+      @game.update(status: 'finished')
     end
-
-
-    # if @current_player == @player_two
-    #   if @card.character.name == @guess_player_one
-    #     @player_two.update(winner: true)
-    #     @player_one.update(winner: false)
-    #     @game.update(status: 'finished')
-    #   else
-    #     @player_two.update(winner: false)
-    #     @player_one.update(winner: true)
-    #     @game.update(status: 'finished')
-    #   end
-    # end
 
 
 
