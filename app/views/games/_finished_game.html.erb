@@ -8,8 +8,14 @@ winner : p1 <%= @player_one.winner %> | p2 <%= @player_two.winner %> <br>
 Carte à trouver playeur 1  <%= @player_one_guess_card.character.name %> | carte choisie ::<%= @card %> <br>
 Carte à trouver playeur 2  <%= @player_two_guess_card.character.name %> | carte choisie <%= @card %> <br>
 <br><br><br>
+
+
 <% if @current_user.id == @player_one.user_id %>
   <% if @player_one.winner == true %>
+    <div class="confetis">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+      <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_wys2rrr6.json"  background="transparent"  speed="0.6"  style="width: 1500px; height: 1500px;"    autoplay></lottie-player>
+    </div>
     Bravo <b><%= @player_one.user.nickname%></b> tu as gagné<br>
     La carte était bien #carte<br>
     Tu gagnes 100 points ! <br>
@@ -20,6 +26,10 @@ Carte à trouver playeur 2  <%= @player_two_guess_card.character.name %> | carte
 
 <% elsif @current_user.id == @player_two.user_id  %>
   <% if @player_two.winner == true %>
+    <div class="confetis">
+      <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+      <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_wys2rrr6.json"  background="transparent"  speed="0.6"  style="width: 1500px; height: 1500px;"    autoplay></lottie-player>
+    </div>
     Bravo <b><%= @player_two.user.nickname%></b> tu as gagné<br>
     La carte était bien #carte<br>
     Tu gagnes 100 points ! <br>

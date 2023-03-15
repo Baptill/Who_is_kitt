@@ -111,6 +111,7 @@
   border: 1px solid rgba(255,255,255,0.2);
   padding: 72px 48px;
   min-width: 950px;
+  box-shadow: 0px 16px 0px -2px #942a38;
 }
 
 .card {
@@ -171,7 +172,7 @@
 
 .card-tray-wrapper-disactive {
   .card-front {
-    transform: scaleY(0.90) scaleX(0.95) rotateX(-148deg) translate3d(0, -57px, -3vmin) !important;
+    transform: scaleY(0.90) scaleX(0.95) rotateX(-148deg) translate3d(0, -57px, -1vmin) !important;
     // Remplacer par une image
     background: url("back_card.png");
     background-size: cover;
@@ -245,4 +246,14 @@
 .active-view h3 {
   color: $yellow;
   padding-bottom: 80px;
+}
+
+.confetis {
+  display: flex;
+  position: absolute;
+}
+
+.buzzer-button {
+  background: none;
+  border: none;
 }

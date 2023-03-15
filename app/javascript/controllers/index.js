@@ -4,6 +4,9 @@
 
 import { application } from "./application"
 
+import BuzzerController from "./buzzer_controller"
+application.register("buzzer", BuzzerController)
+
 import GameLogicController from "./game_logic_controller"
 application.register("game-logic", GameLogicController)
 
