@@ -11,11 +11,9 @@
   <div class="d-flex">
     <div class="d-flex flex-column ">
       <div class="block-identification fight d-flex align-items-center justify-content-center">
-        <div>
-          <%= link_to "#" do %>
-            <%= image_tag "logos/clicktofight.png", width: "340px" %>
-          <% end %>
-        </div>
+        <%= link_to "games", data: {turbo_method: :post} do %>
+          <%= image_tag "logos/clicktofight.png", width: "340px" %>
+        <% end %>
       </div>
       <div class="block-jaune fight mx-3 rules px-3 py-3">
         <h3 class="h3rules">Règles du jeu</h3>
@@ -149,23 +147,3 @@
     </div>
   </div>
 </div>
-
-<!-- classement -->
-<% @ranking.each do |score| %>
-  <%= score.score %>
-<% end %>
-
-<br>
-<!-- dernières parties -->
-<% @games.each do |game| %>
-  Jeu numéro : <%= game.id %>
-<% end %>
-<% if @pending_game.present? %>
-    <%= url_for(controller: 'games', action: 'shifoumi', id: @pending_game.id, player_two: true) %>
-    <%= link_to "Lancer la partie", game_path(@pending_game), class: "btn btn-primary" %>
-    <!-- <p>localhost:3000/games/<%= @pending_game.id %>/shifoumi?player_two=true</p> -->
-  </div>
-<% else %>
-<% end %>
-
-  <%= render partial: "games/new", locals: { game: @new_game } %>

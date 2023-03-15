@@ -12,7 +12,7 @@
     <% elsif @game.buzzer? %>
       <%= render partial: "buzz", locals: { game: @game } %>
     <% elsif @game.finished? %>
-      <%= render partial: "finished_game", locals: { game: @game } %>
+      <%= render partial: "finished_game", locals: { game: @game, card: @card_selected } %>
     <% end %>
   </div>
 
