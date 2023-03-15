@@ -8,7 +8,7 @@ export default class extends Controller {
 
     var cpt = 30;
 
-    timer = setInterval(function(){
+    this.timer = setInterval(function(){
         if(cpt>0) // si on a pas encore atteint la fin
         {
             --cpt; // décrémente le compteur
@@ -20,7 +20,7 @@ export default class extends Controller {
         }
         else // sinon brise la boucle
         {
-            clearInterval(timer);
+            clearInterval(this.timer);
         }
     }, 1000);
 

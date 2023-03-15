@@ -4,7 +4,10 @@ class GamesController < ApplicationController
 
   def game
     @new_game = Game.new
-  end
+    @games = Game.all
+    # recuperer la partie lancée et rediriger vers la pending avec cet ID
+    @new_id_game = Game.last.id
+   end
 
   def select_character
     @game = Game.find(params[:game])
@@ -13,7 +16,8 @@ class GamesController < ApplicationController
     @card.update(guess: true)
 
     @game.started! if @game.players.first.cards.find_by(guess: true) && @game.players.last.cards.find_by(guess: true)
-    redirect_to game_path(@game)
+    GameChannel.broadcast_to(@game, true)
+    head :ok
   end
 
   def move
@@ -45,6 +49,7 @@ class GamesController < ApplicationController
 
   def show
     # raise
+
     @game = Game.includes(players: { cards: { character: { features: :characteristic, photo_attachment: :blob}}}).find(params[:id])
 
     Player.find_or_create_by(user_id: current_user.id, game: @game) do |player|
@@ -90,15 +95,24 @@ class GamesController < ApplicationController
     @player = Player.find(params[:id])
     @player_cards = @player.cards.select { |card| card.active }
     @current_player = current_user.active_player(@game)
+    @game.buzzer!
+    redirect_to game_path(@game)
   end
 
   def save_winner
+
+    puts "Salut"
     @game = Game.find(params[:id])
-    @card = Card.find(params[:card_id])
+    @card = Card.find(params[:id])
     @player_one = @game.players.first
-    @player = @current_player
     @player_two = @game.players.last
     @player_two_guess_card = @player_two.cards.find_by(guess: true)
+    # sur la page _buzz.html.erb récupérer la valeur de la carte séléctionnée par le joueur qui a buzzé
+    # et la comparer à la valeur de la carte du joueur qui a buzzé
+    # si la valeur est la même alors le joueur qui a buzzé gagne
+    # sinon le joueur qui a buzzé perd
+    # si le joueur qui a buzzé gagne alors on ajoute 1 point au score du joueur qui a buzzé
+    # sinon on ajoute 100 points au score du joueur qui a buzzé
 
     if current_user == @player_one.user
       if @card == @player_two.cards.find_by(guess: true)
@@ -113,18 +127,25 @@ class GamesController < ApplicationController
     end
 
     if current_user == @player_two.user
+      puts "Salut"
       if @card == @player_one.cards.find_by(guess: true)
         @player_one.update(winner: true)
         @player_two.update(winner: false)
+        # ajouter 100 points au score du user
+        @current_user.score += 100
+        @current_user.save
         @game.update(status: 'finished')
       else
         @player_one.update(winner: false)
         @player_two.update(winner: true)
+        @current_user.score += 100
+        @current_user.save
         @game.update(status: 'finished')
       end
     end
 
-    redirect_to game_path(@game)
+    GameChannel.broadcast_to(@game, true)
+    head :ok
   end
 
   def create
