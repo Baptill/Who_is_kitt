@@ -1,10 +1,13 @@
 class GameChannel < ApplicationCable::Channel
   def subscribed
-    @game = Game.find(params[:id]) # Récupère le jeu correspondant à l'ID passé en paramètre
-    p current_user # Affiche l'utilisateur actuel dans la console
-    link_invited_player unless @game.full? # Lien avec le joueur invité si le jeu n'est pas plein
-    swith_game_to_active if @game.full? && @game.status == 'pending' # Bascule le jeu en mode actif si le jeu est plein et en attente
-    stream_for @game # Diffuse les mises à jour du jeu à tous les abonnés du canal
+    # @game = Game.find(params[:id]) # Récupère le jeu correspondant à l'ID passé en paramètre
+    # p current_user # Affiche l'utilisateur actuel dans la console
+    # link_invited_player unless @game.full? # Lien avec le joueur invité si le jeu n'est pas plein
+    # swith_game_to_active if @game.full? && @game.status == 'pending' # Bascule le jeu en mode actif si le jeu est plein et en attente
+    # stream_for @game # Diffuse les mises à jour du jeu à tous les abonnés du canal
+
+    game = Game.find(params[:id])
+    stream_for game
   end
 
   def unsubscribed
@@ -22,7 +25,8 @@ class GameChannel < ApplicationCable::Channel
   def swith_game_to_active
     @game.update(status: 'active') # Met à jour l'état du jeu en "actif"
     GameChannel.broadcast_to(
-      @game
+      @game,
+      true
     ) # Diffuse les mises à jour du jeu à tous les abonnés du canal
   end
 

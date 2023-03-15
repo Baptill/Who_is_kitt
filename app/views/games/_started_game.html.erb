@@ -6,7 +6,7 @@
 
 
  <%# DEBUT DU BG %>
-<div class="d-flex flex-column active-modal m-0" data-controller="game-logic">
+<div class="d-flex flex-column active-modal m-0">
 
   <div class="game-status">
     <!-- Player Left -->
@@ -113,17 +113,13 @@
         <% end %>
       </div>
       <div class="d-flex height300">
-        <div class="d-flex container-chat"
-          data-controller="game-subscription"
-          data-game-subscription-game-id-value="">
+        <div class="d-flex container-chat">
           <%#= render partial: "game", locals: { game: @game } %>
 
           <div class="d-flex justify-content-end">
-            <div class="game"
-              data-controller="game-subscription"
-              data-game-subscription-game-id-value="<%= @game.id %>">
+            <div class="game">
 
-              <div class="questions" data-game-subscription-target="questions">
+              <div class="questions">
                 <% @game.characteristic_questions.each do |char_question| %>
                   <%= render "characteristic_questions/characteristic_question", char_question: char_question %>
                 <% end %>
