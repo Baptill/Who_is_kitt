@@ -43,6 +43,18 @@
   -webkit-text-stroke: 3px black;
 }
 
+.fight-action {
+  width: 500px;
+  height: 150px;
+  position: absolute;
+  top: 40%;
+}
+
+.fight-image {
+  background: url("fight-image.png");
+  background-size: cover;
+}
+
 .user-pending {
   display: flex;
   flex-direction: row;
@@ -245,7 +257,8 @@
 
 .active-view h3 {
   color: $yellow;
-  padding-bottom: 80px;
+  padding-bottom: 40px;
+
 }
 
 .confetis {
