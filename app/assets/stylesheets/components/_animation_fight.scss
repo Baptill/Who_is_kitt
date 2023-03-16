@@ -13,6 +13,13 @@
   animation: move 1s ease-in-out;
 }
 
+.buzzcenter {
+  width: 100vw;
+  height: 20vh;
+  margin-top: 40vh;
+  text-align: center;
+}
+
 @keyframes grow-critical {
   0% {
     font-size: 0;
@@ -122,4 +129,14 @@
   background-color: $red;
   position: relative;
   z-index: 2;
+}
+
+
+.buzz-waiting {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(#FFFFFF, 0.1);
 }

@@ -80,15 +80,15 @@ class Game < ApplicationRecord
     self.players.where.not(user_id: self.creator).first
   end
 
- 
- 
+
+
   def manage_score!
     user_id_has_win = players.find_by(winner: true).user_id
     user_winner = User.find(user_id_has_win)
     user_score_after_victory = user_winner.score + POINTS_FOR_VICTORY
     user_winner.update(score: user_score_after_victory)
   end
- 
+
 
   private
 
