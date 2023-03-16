@@ -3,16 +3,12 @@
   class="<%= current_user == char_question.player.user ? 'bg-grey' : 'bg-cream' %>"
 >
   <% if current_user == char_question.player.user %>
-    <code>
-      <span class="ask">Vous avez demandé si le personnage a</span>
-    </code>
+    <span class="ask">Vous avez demandé si le personnage a</span>
   <% else %>
-    <code>
-      <span class="ask"><%= char_question.player.user.nickname %> Demande :</span>
-    </code>
+    <span class="ask"><%= char_question.player.user.nickname %> demande si le personnage a</span>
   <% end %>
 
-  <span class="type-attribute"><%= char_question.characteristic.name %>?</span>
+  <span class="type-attribute"><strong><%= char_question.characteristic.name %> ?</strong></span><br>
 
     <% if current_user != char_question.player.user && char_question.answer == nil %>
       <% if char_question.answer == nil %>
@@ -22,8 +18,10 @@
         </div>
       <% end %>
     <% end %>
-    <% if char_question.answer != nil %> Réponse donnée :  <% if char_question.answer == true %> Oui <% else %> Non <% end %>
+    <% if char_question.answer != nil %> La réponse est  <% if char_question.answer == true %> <strong>oui</strong> <% else %> <strong>non</strong> <% end %>
     <% else %>
-      <% if  current_user == char_question.player.user %> En attente de réponse <% end %>
+      <% if current_user == char_question.player.user %> 
+        <small class="opacity-50 mt-4">En attente de l'adversaire</small> 
+      <% end %>
     <% end %>
 </div>
