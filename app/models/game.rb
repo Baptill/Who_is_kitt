@@ -70,6 +70,13 @@ class Game < ApplicationRecord
     status == "finished"
   end
 
+  def player_one
+    Player.find_by(user_id: self.creator, game_id: self.id)
+  end
+
+  def player_two
+    self.players.where.not(user_id: self.creator).first
+  end
 
   private
 
