@@ -15,8 +15,11 @@
 
 
 *:hover {
- cursor:url('https://www.ruedeverneuil.fr/tesssst/mickey%201.png'), auto;
+ cursor:url('https://www.ruedeverneuil.fr/tesssst/mickey%201.png'), auto !important;
 }
-body {
- cursor:url('https://www.ruedeverneuil.fr/tesssst/mickey%201.png'), auto;
+*, html {
+ cursor:url('https://www.ruedeverneuil.fr/tesssst/mickey%201.png'), auto !important;
+}
+a:hover {
+  cursor: url("https://www.ruedeverneuil.fr/tesssst/mickey%201.png"), auto !important;
 }
