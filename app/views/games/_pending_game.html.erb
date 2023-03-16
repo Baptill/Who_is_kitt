@@ -2,9 +2,9 @@
     <%= audio_tag("waiting.mp3", autoplay: true, :data => { :pending_target => 'audio'}) %>
     <div class="loading-pending mb-5">
       <h1 class="size70">En attente de votre adversaire</h1>
- 
+
       <h3 class="text-center">Voici le lien du jeu 👇 <br><strong>www.whoiskitt.fun/games/<%= @game.id %>/</strong></h3>
- 
+
 
       <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     </div>
@@ -16,11 +16,13 @@
               <%= cl_image_tag current_user.photo.key, crop: :fill %>
         <% end %>
       </div>
-      <span><h2><%= current_user.nickname %></h2></span>
+      <span><h2 style="color:#CE001D !important"><%= current_user.nickname %></h2></span>
     </div>
     <h1 class="vs fight-catchline" data-pending-target="vs">VS</h1>
     <div class="item-playeur">
-      <div class="loading-avatar"><h1 style="font-size: 120px">?</h1></div>
+      <div class="current-avatar">
+        <%= image_tag "waitingpic.gif", width:"100px", style:"object-fit: cover" %>
+      </div>
       <span><h2>Joueur 2</h2></span>
     </div>
   </div>

@@ -14,14 +14,14 @@
 
     <div class="d-flex flex-column ">
 
-      <div class="d-flex block-identification fight mx-3 align-items-center justify-content-center" style="height:122px">
+      <div class="d-flex block-identification fight mx-3 align-items-center justify-content-center bouge" style="height:122px">
         <%= link_to "games", data: {turbo_method: :post} do %>
-          <h1 class="size70">Ta race</h2>
+           <%= image_tag "logos/partie.png", width:"300px" %>
         <% end %>
       </div>
 
       <div class="block-jaune fight mx-3 rules px-3 py-3">
-        <h3 class="h3rules">Règles du jeu</h3>
+        <h3 class="h3rules">Règles du jeu</h3><hr>
         <p class="prules">
           Chacun des deux joueurs prend un plateau avec tous les visages des personnages.<br>
           Ensuite, chaque joueur pioche une carte au hasard.<br>
@@ -31,7 +31,7 @@
       </div>
     </div>
 
-    <div class="d-flex flex-column">
+    <div class="d-flex flex-column ">
       <div class="d-flex block-identification block-user fight mx-3 align-items-center justify-content-between gap-3">
         <div>
           <% if current_user.photo.key? %>
@@ -41,16 +41,16 @@
         <div class="flex flex-column flex-grow-1">
           <div class="d-flex flex-grow-1 justify-content-between align-items-start">
             <h4><%= @user.nickname %></h4>
-            <b><%= @user.score %> point</b>
+            <b><%= @user.score %> points</b>
           </div>
 
-          
-          <div class="d-flex flex-grow-1">
+
+          <div class="d-flex flex-grow-1 ">
             <span><%= @user.email %></span>
           </div>
 
           <div class="d-flex justify-content-between align-items-center">
-            <small class="opacity-50">Membre depuis le <%= @user.created_at.strftime("%d/%m/%Y") %></small>
+            <small class="opacity-50">Batch #<%= @user.batch %></small>
             <div class="flex">
               <%= link_to edit_user_registration_path, class: 'btn p-0' do %>
                 <i class="fa-solid fa-pen-to-square"></i>
@@ -59,16 +59,16 @@
             </div>
           </div>
         </div>
-        
+
         <div class="d-flex flex-column">
           <div><b></div>
-            
+
         </div>
       </div>
 
 
     <div class="block-jaune fight mx-3 rules px-3 py-3">
-      <h3 class="h3rules">Classement</h3>
+      <h3 class="h3rules">Classement | TOP 10</h3><hr>
 
         <div class="d-flex justify-content-between flex-grow-1">
           <div class="nav flex-column nav-pills me-3 " id="v-pills-tab" role="tablist" aria-orientation="vertical">
@@ -97,7 +97,8 @@
                   id="v-pills-general"
                   role="tabpanel"
                   aria-labelledby="v-pills-general-tab"
-                  tabindex="0">
+                  tabindex="0"
+                  style="font-size: 14px;">
                 <ol>
 
                   <% @top10.each do |user| %>
@@ -108,10 +109,10 @@
                     <li style="text-align:justify; padding-left:5px"> <%= user.nickname %> : <%= user.score %> points</li>
                   <% end %>
 
-                <% end %>
-              <% unless @top10.include?(current_user) %>
-              <li style="text-align:justify; padding-left:5px"> <%= current_user.nickname %> : <%= current_user.score %> points</li>
-              <% end %>
+                  <% end %>
+                  <% unless @top10.include?(current_user) %>
+                  <li style="text-align:justify; padding-left:5px"> <%= current_user.nickname %> : <%= current_user.score %> points</li>
+                  <% end %>
 
                 </ol>
             </div>
@@ -120,6 +121,7 @@
                   id="v-pills-batch"
                   role="tabpanel"
                   aria-labelledby="v-pills-batch-tab"
+                  style="font-size: 14px;"
                   tabindex="0">
  <ol>
 

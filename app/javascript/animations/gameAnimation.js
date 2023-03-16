@@ -10,7 +10,7 @@ const gameAnimation = () => {
   if (pendingScreen) {
     gsap.from(fightElement, {
       duration: 1.0,
-      delay: 1.0,
+      delay: 0.0,
       scale: 8,
       opacity:0,
       ease: "bounce.out"
