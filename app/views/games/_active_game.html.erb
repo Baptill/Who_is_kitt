@@ -1,8 +1,8 @@
-<div class="container d-flex flex-column justify-content-center align-items-center height100vh">
+<div class="container d-flex flex-column justify-content-center align-items-center height100vh pending-screen">
 
-  <h1 class="fight vs">FIGHT</h1>
+  <div class="fight-action fight-image"></div>
 
-  <div class="d-flex flex-column mb-3 active-modal active-view pending-screen">
+  <div class="d-flex flex-column mb-3 active-modal active-view ">
     <% if @current_user.id == @player_one.user_id %>
       <h2>Le joueur 2 a rejoint la partie !</h2>
     <% else %>
@@ -17,7 +17,7 @@
             <% if card.guess == true %>
                 <%= cl_image_tag card.character.photo.key, width: 100, height: 190, crop: :fill, class:"card-selected"  %>
             <% else %>
-                <%= cl_image_tag card.character.photo.key, width: 100, height: 190, crop: :fill  %>
+                <%= cl_image_tag card.character.photo.key, width: 100, height: 190, crop: :fill, class:"" %>
             <% end %>
           <% end %>
         <% end %>

@@ -2,11 +2,10 @@ import gsap from "gsap"
 
 const gameAnimation = () => {
 
-  //const pendingScreen = document.querySelector(".pending-screen")
+  const pendingScreen = document.querySelector(".pending-screen")
 
-  const fightElement = document.querySelector(".fight");
+  const fightElement = document.querySelector(".fight-action");
   // Pending anim
-  console.log(pendingScreen)
 
   if (pendingScreen) {
     gsap.from(fightElement, {
@@ -16,9 +15,10 @@ const gameAnimation = () => {
       opacity:0,
       ease: "bounce.out"
     })
-    // setTimeout(() => {
-    //   fightElement.style.display = "none"
-    //   }, 3000);
+    setTimeout(() => {
+      fightElement.style.display = "none"
+      }, 3000);
+
   }
   // Critical anim
   if(document.querySelector(".critical")) {
