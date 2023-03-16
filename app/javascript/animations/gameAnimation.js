@@ -18,8 +18,8 @@ const gameAnimation = () => {
     setTimeout(() => {
       fightElement.style.display = "none"
       }, 3000);
-
   }
+
   // Critical anim
   if(document.querySelector(".critical")) {
     const pending = document.querySelector(".critical")
@@ -52,7 +52,7 @@ const gameAnimation = () => {
     })
     setTimeout(() => {
       buzzer.style.display = "none"
-      }, 3000);
+    }, 3000);
   }
 }
 
