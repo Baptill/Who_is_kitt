@@ -16,7 +16,7 @@
 
       <div class="block-identification fight d-flex align-items-center justify-content-center">
         <%= link_to "games", data: {turbo_method: :post} do %>
-          <%= image_tag "logos/clicktofight.png", width: "340px" %>
+          <h1 class="size70">Ta race</h2>
         <% end %>
       </div>
 
@@ -32,25 +32,37 @@
     </div>
 
     <div class="d-flex flex-column">
-      <div class="d-flex block-identification fight mx-3 align-items-center justify-content-between ">
-
+      <div class="d-flex block-identification block-user fight mx-3 align-items-center justify-content-between gap-3">
         <div>
           <% if current_user.photo.key? %>
             <%= cl_image_tag current_user.photo.key, crop: :fill, class: "avatar-bordered dropdown-toggle imgbig", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
           <% end %>
         </div>
+        <div class="flex flex-column flex-grow-1">
+          <div class="d-flex flex-grow-1 justify-content-between align-items-start">
+            <h4><%= @user.nickname %></h4>
+            <b><%= @user.score %> point</b>
+          </div>
 
-        <div class="d-flex flex-column flex-grow-1 mx-2">
-          <div><b><%= @user.nickname %></b></div>
-          <div><%= @user.email %></div>
-          <div>Inscrit le : <%= @user.created_at.strftime("%d/%m/%Y") %></div>
-        </div>
+          
+          <div class="d-flex flex-grow-1">
+            <span><%= @user.email %></span>
+          </div>
 
-        <div class="d-flex flex-column">
-          <div><b><%= @user.score %> point</b></div>
-            <div class="mt-2">
-              <i class="fa-solid fa-pen-to-square"></i><%= link_to 'Edit', edit_user_registration_path, class: 'btn p-0' %>
+          <div class="d-flex justify-content-between align-items-center">
+            <small class="opacity-50">Membre depuis le <%= @user.created_at.strftime("%d/%m/%Y") %></small>
+            <div class="flex">
+              <%= link_to edit_user_registration_path, class: 'btn p-0' do %>
+                <i class="fa-solid fa-pen-to-square"></i>
+                <span>Éditer</span>
+              <% end %>
             </div>
+          </div>
+        </div>
+        
+        <div class="d-flex flex-column">
+          <div><b></div>
+            
         </div>
       </div>
 
