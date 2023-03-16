@@ -29,3 +29,35 @@
   display:grid;
   grid-template-columns: repeat(12, 1fr);
 }
+.confetis {
+  position: absolute;
+  top:0;
+  left: 0;
+
+ }
+
+.size70 {
+  font-size:60px;
+  background: -webkit-linear-gradient($yellow, $red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+}
+.finished-game {
+  font-size: 26px;
+  color:$yellow;
+  margin: 5px;
+}
+
+
+.finished-game-small {
+  font-size: 20px;
+  color:$yellow;
+  margin: 5px;
+}
+
+.imgfinished {
+  border: 5px solid white;
+  padding: 5px;
+  margin: 10px 0;
+}

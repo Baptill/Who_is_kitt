@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
-  resources :games, only: [:create, :show] do
+  resources :games, only: [:create, :show,] do
     resources :characteristic_questions, only: :create
 
     member do

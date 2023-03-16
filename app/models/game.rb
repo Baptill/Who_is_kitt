@@ -78,6 +78,7 @@ class Game < ApplicationRecord
     self.players.where.not(user_id: self.creator).first
   end
 
+
   private
 
   def broadcast_data
