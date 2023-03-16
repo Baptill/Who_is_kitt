@@ -26,9 +26,39 @@ puts "finished seeding game"
 
 # Create the users
 puts "seeding users"
-user_briag = User.create!(email: "briag.martin@gmail.com", password: "password", password_confirmation: "password", nickname: "Briag", score: 0, batch: "rennes")
-user_baptiste = User.create!(email: "baptil@gmail.com", password: "password", password_confirmation: "password", nickname: "Baptiste", score: 0, batch: "rennes")
-user_charles = User.create!(email: "charleswoehl@gmail.com", password: "password", password_confirmation: "password", nickname: "Charles", score: 0, batch: "rennes")
+
+user_briag = User.create!(email: "briag.martin@gmail.com", password: "password", password_confirmation: "password", nickname: "Briag", score: 1200, batch: "rennes")
+file = URI.open("app/assets/images/profil-picture/briag.jpg")
+user_briag.photo.attach(io: file, filename: "briag.jpg", content_type: "image/jpg")
+user_briag.save
+
+user_baptiste = User.create!(email: "baptil@gmail.com", password: "password", password_confirmation: "password", nickname: "Baptiste", score: 900, batch: "rennes")
+file = URI.open("app/assets/images/profil-picture/baptiste.jpg")
+user_baptiste.photo.attach(io: file, filename: "baptiste.jpg", content_type: "image/jpg")
+user_baptiste.save
+
+user_charles = User.create!(email: "charleswoehl@gmail.com", password: "password", password_confirmation: "password", nickname: "Charles", score: 800, batch: "rennes")
+file = URI.open("app/assets/images/profil-picture/gaspard.png")
+user_charles.photo.attach(io: file, filename: "gaspard.png", content_type: "image/png")
+user_charles.save
+
+user_jerome = User.create!(email: "jerome@gmail.com", password: "password", password_confirmation: "password", nickname: "Jerome", score: 1700, batch: "rennes")
+file = URI.open("app/assets/images/profil-picture/jerome.png")
+user_jerome.photo.attach(io: file, filename: "jerome.png", content_type: "image/png")
+user_jerome.save
+
+user_kevin = User.create!(email: "kevin@gmail.com", password: "password", password_confirmation: "password", nickname: "Kevin", score: 200, batch: "rennes")
+file = URI.open("app/assets/images/profil-picture/kevin.jpg")
+user_kevin.photo.attach(io: file, filename: "kevin.jpg", content_type: "image/jpg")
+user_kevin.save
+
+user_nicolas = User.create!(email: "nicolas@gmail.com", password: "password", password_confirmation: "password", nickname: "Nicolas", score: 400, batch: "rennes")
+file = URI.open("app/assets/images/profil-picture/nicolas.jpg")
+user_nicolas.photo.attach(io: file, filename: "nicolas.jpg", content_type: "image/jpg")
+user_nicolas.save
+
+
+
 puts "seeded #{User.count} users"
 puts "finished seeding users"
 
