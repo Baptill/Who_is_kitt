@@ -7,25 +7,24 @@ export default class extends Controller {
   connect() {
 
     var cpt = 30;
-
-    this.timer = setInterval(function(){
-        if(cpt>0) // si on a pas encore atteint la fin
-        {
-            --cpt; // décrémente le compteur
-            var Crono = document.getElementById("timer"); // récupère l'id
-            var old_contenu = Crono.firstChild; // stock l'ancien contenu
-            Crono.removeChild(old_contenu); // supprime le contenu
-            var texte = document.createTextNode(cpt); // crée le texte
-            Crono.appendChild(texte); // l'affiche
-        }
-        else // sinon brise la boucle
-        {
-            clearInterval(this.timer);
-        }
-    }, 1000);
-
-
-  }
+    console.log(cpt)
+    setInterval(function(){
+      if(cpt>0) // si on a pas encore atteint la fin
+      {
+          --cpt; // décrémente le compteur
+          var Crono = this.timerTarget; // récupère l'id
+          var old_contenu = Crono.firstChild; // stock l'ancien contenu
+          Crono.removeChild(old_contenu); // supprime le contenu
+          var texte = document.createTextNode(cpt); // crée le texte
+          this.timerTarget.innerText = cpt
+          Crono.appendChild(texte); // l'affiche
+      }
+      else // sinon brise la boucle
+      {
+        clearInterval(this.timer);
+      }
+  }, 1000);
+}
 
   restart(e) {
     this.timeBarTarget.classList.remove('animate-timer')

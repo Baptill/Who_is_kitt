@@ -104,6 +104,13 @@
   width: 72%;
   background: rgba(255,255,255,0.2);
   border-radius: 10px 10px 0 0;
+  #dock {
+    height: 90px;
+    display: flex;
+    align-items: center;
+    backdrop-filter: blur(10px);
+    border-radius: 80px 80px;
+  }
 }
 #dock-container li {
   list-style-type: none;
@@ -132,7 +139,7 @@
 #dock-container li span {
   display: none;
   position: absolute;
-  bottom: 140px;
+  bottom: 100px;
   left: 0;
   width: 100%;
   background-color: rgba(0,0,0,0.75);

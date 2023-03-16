@@ -1,5 +1,8 @@
 .container-chat {
   width: 300px;
+  font-family: 'Cabin';
+  font-size:14px;
+  color:$blue;
 }
 
 .gamequestion {
@@ -82,21 +85,19 @@
 .bg-grey {
   background-color: #FFF;
   padding: 10px 20px;
-  font-size: 12px;
-  border-radius: 20px;
+  border-radius: 20px 20px 0 20px;
   text-align: right;
   margin: 5px 0;
   padding: auto 5px;
   width: 80%;
   margin-left: 20%;
   opacity: 0.8;
-
+  text-align: right;
 }
 .bg-cream {
   background-color: rgba($color: #F1F1F1, $alpha: 0.9);
   padding: 10px 20px;
-  font-size: 12px;
-  border-radius: 20px;
+  border-radius: 20px 20px 20px 0px;
   text-align: left;
   margin: 10px 0;
   width: 80%;
@@ -114,17 +115,42 @@
   height: 300px !important;
 }
 
-.ask {
-  font-size: 14px;
-  color: $red;
-}
 
 .type-attribute {
-  font-size: 14px;
-  color: black;
+  color: $blue;
   margin-top: 5px;
 }
 
 .btn-yn {
   border-radius: 50%;
+  display: flex;
+  gap:12px;
+  margin-top:8px;
+  .btn-success {
+    background:#D4EBDD;
+    color:#64A47C;
+    border-radius:50px;
+    transition:.3s;
+    padding: 8px 24px;
+    &:hover {
+      background:darken(#D4EBDD, 10%);
+      color:darken(#64A47C, 10%);
+      transition:.3s;
+    }
+  }
+  .btn-danger {
+    background:#FDC1CE;
+    color:#A45263;
+    border-radius:50px;
+    transition:.3s;
+    padding: 8px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background:darken(#FDC1CE, 10%);
+      color:darken(#A45263, 10%);
+      transition:.3s;
+    }
+  }
 }
