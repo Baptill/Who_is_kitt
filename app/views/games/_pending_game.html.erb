@@ -2,7 +2,9 @@
     <%= audio_tag("waiting.mp3", autoplay: true, :data => { :pending_target => 'audio'}) %>
     <div class="loading-pending mb-5">
       <h1 class="size70">En attente de votre adversaire</h1>
+ 
       <h3 class="text-center">Voici le lien du jeu 👇 <br><strong>www.whoiskitt.fun/games/<%= @game.id %>/</strong></h3>
+ 
 
       <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div>
     </div>
