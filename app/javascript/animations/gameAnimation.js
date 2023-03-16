@@ -2,10 +2,12 @@ import gsap from "gsap"
 
 const gameAnimation = () => {
 
-  const pendingScreen = document.querySelector(".pending-screen")
+  //const pendingScreen = document.querySelector(".pending-screen")
 
   const fightElement = document.querySelector(".fight");
   // Pending anim
+  console.log(pendingScreen)
+
   if (pendingScreen) {
     gsap.from(fightElement, {
       duration: 1.0,
@@ -43,7 +45,7 @@ const gameAnimation = () => {
     const buzzer = document.querySelector(".critical")
 
     gsap.from(buzzer, {
-      duration: 1.0,
+      duration: 0.5,
       scale: 10,
       opacity:0,
       ease:"power4.out",

@@ -25,9 +25,9 @@ puts "finished seeding game"
 
 # Create the users
 puts "seeding users"
-user_briag = User.create!(email: "briag.martin@gmail.com", password: "password", password_confirmation: "password", nickname: "Briag", score: 0)
-user_baptiste = User.create!(email: "baptil@gmail.com", password: "password", password_confirmation: "password", nickname: "Baptiste", score: 0)
-user_charles = User.create!(email: "charleswoehl@gmail.com", password: "password", password_confirmation: "password", nickname: "Charles", score: 0)
+user_briag = User.create!(email: "briag.martin@gmail.com", password: "password", password_confirmation: "password", nickname: "Briag", score: 0, batch: "rennes")
+user_baptiste = User.create!(email: "baptil@gmail.com", password: "password", password_confirmation: "password", nickname: "Baptiste", score: 0, batch: "rennes")
+user_charles = User.create!(email: "charleswoehl@gmail.com", password: "password", password_confirmation: "password", nickname: "Charles", score: 0, batch: "rennes")
 puts "seeded #{User.count} users"
 puts "finished seeding users"
 
