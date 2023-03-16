@@ -7,12 +7,12 @@
    <h1 class="size70 mb-3">Le joueur 2 a rejoint la partie !</h1>
 
     <% else %>
-    <h1 class="size70 mb-3">Bienvenue joueur 2 !</h1>
+    <h1 class="size70 mb-3">Bienvenue <%= current_user.nickname %></h1>
     <% end %>
 
        <div class="finished-game">Choisis la carte à faire deviner</div>
         <div class="container game">
-          <div class="card-tray w-100">
+          <div class="card-tray w-100 card-tray-active-game">
               <% current_user.active_player(@game).cards.each do |card| %>
               <div class= "cardbuzzer">
                 <%= link_to select_character_game_path(game: @game, id: card.id), data: {turbo_method: :patch} do %>

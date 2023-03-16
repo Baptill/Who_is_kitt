@@ -41,14 +41,13 @@
   background: -webkit-linear-gradient($yellow, $red);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-
 }
+
 .finished-game {
   font-size: 26px;
   color:$yellow;
   margin: 5px;
 }
-
 
 .finished-game-small {
   font-size: 20px;
@@ -60,4 +59,8 @@
   border: 5px solid white;
   padding: 5px;
   margin: 10px 0;
+}
+
+.card-tray-active-game {
+  margin-bottom: 80px;
 }

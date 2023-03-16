@@ -4,15 +4,15 @@
 >
   <% if current_user == char_question.player.user %>
     <code>
-      <span class="ask">Vous demandez :</span>
+      <span class="ask">Vous avez demandé si le personnage a</span>
     </code>
   <% else %>
     <code>
-        <span class="ask"><%= char_question.player.user.nickname %> Demande :</span>
+      <span class="ask"><%= char_question.player.user.nickname %> Demande :</span>
     </code>
   <% end %>
 
-  <span class="type-attribute"><p><b><%= char_question.characteristic.name %></b> ?</p></span>
+  <span class="type-attribute"><%= char_question.characteristic.name %>?</span>
 
     <% if current_user != char_question.player.user && char_question.answer == nil %>
       <% if char_question.answer == nil %>
