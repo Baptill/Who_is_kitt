@@ -92,7 +92,7 @@ class GamesController < ApplicationController
 
   def buzz
     @game = Game.find(params[:id])
-    @player = Player.find(params[:id])
+    @player = Player.find(params[:player_id])
     @player_cards = @player.cards.select { |card| card.active }
     @game.buzzer!
     @current_player = current_user.active_player(@game)
