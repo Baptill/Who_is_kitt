@@ -9,9 +9,13 @@
 
 .cardbuzzer {
   width: 100px;
-   background-color: white;
-   padding: 2px;
-   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: white;
+  padding: 2px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  transition: .3s;
+  &:hover {
+    margin-top: -10px;
+  }
 }
 .disactive-cardbuzzer {
   opacity: 0.3;
