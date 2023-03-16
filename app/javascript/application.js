@@ -4,4 +4,7 @@ import "./controllers"
 import "bootstrap"
 import { gameAnimation } from "./animations/gameAnimation"
 
-gameAnimation()
+
+window.addEventListener('DOMContentLoaded', (e) => {
+  gameAnimation()
+})
