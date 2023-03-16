@@ -124,6 +124,24 @@
   padding: 72px 48px;
   min-width: 950px;
   box-shadow: 0px 16px 0px -2px #942a38;
+
+}
+.card-tray-yellow {
+  display:grid;
+  grid-template-columns: repeat(8, 1fr);
+  transform: rotateX(25deg) translate3d(0, 50px, 0);
+  transform-style: preserve-3d;
+  //background-image: url("plateau.png");
+  //background-position: center;
+  //background-size: cover;
+  background:$yellow;
+  gap: 8px;
+  border-radius:8px;
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 72px 48px;
+  min-width: 950px;
+  box-shadow: 0px 16px 0px -2px #942a38;
+
 }
 
 .card {
@@ -184,7 +202,7 @@
 
 .card-tray-wrapper-disactive {
   .card-front {
-    transform: scaleY(0.90) scaleX(0.95) rotateX(-148deg) translate3d(0, -57px, -1vmin) !important;
+    transform: scaleY(0.90) scaleX(0.95) rotateX(-148deg) translate3d(0, -57px, 0vmin) !important;
     // Remplacer par une image
     background: url("back_card.png");
     background-size: cover;

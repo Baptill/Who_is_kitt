@@ -13,11 +13,23 @@
 
                 <% end %>
                     <li>
-                      <button data-action="click->buzzer#add" class="buzzer-button">
+
+
+                    <%= link_to buzz_game_path(@game) do %>
+                    <button data-action="click->buzzer#add" class="buzzer-button">
+                      <%# <button  class="buzzer-button">  %>
                       <%#= link_to "Buzzer", buzz_game_path(@game), class: "btn btn-primary" %>
                       <%= image_tag "icons/buzzer.png", style:" height:45px" %>
-                      </button>
+                      <%# </button>         %>
+                    </button>
+                    <% end %>
                     </li>
+
+
+
+
+
+
             </ul>
           </div>
         </div>

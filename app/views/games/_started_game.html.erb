@@ -34,7 +34,7 @@
         <span class="game-user-name"><%=  @player_one.user.nickname  %></span>
         <% if @current_player.user == @player_two.user %>
         <%# mini jeu adverse %>
-        <div class="d-flex justify-content-start">
+        <div class="d-flex justify-content-end" style="margin-top:-47px">
           <%= render "games/mini_game_player2" %>
         </div>
 
@@ -42,7 +42,8 @@
 
          <% @current_player.cards.each do |card| %>
           <%if card.guess == true %>
-          <div style="text-align:right">
+
+          <div style="text-align:right; margin-top:-47px">
           <%= cl_image_tag card.character.photo.key, width: 50, crop: :fill, style:"text-align:right" %>
           </div>
           <% end %>
@@ -77,7 +78,7 @@
 
         <% if @current_player.user == @player_one.user %>
         <%# mini jeu adverse %>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-start" style="margin-top:-47px">
           <%= render "games/mini_game_player2" %>
         </div>
 
@@ -85,7 +86,7 @@
 
          <% @current_player.cards.each do |card| %>
           <%if card.guess == true %>
-          <div>
+          <div style="margin-top:-47px">
           <%= cl_image_tag card.character.photo.key, width: 50, crop: :fill %>
           </div>
           <% end %>
@@ -130,7 +131,7 @@
           <%#= render partial: "game", locals: { game: @game } %>
 
           <div class="d-flex justify-content-end">
-            <div class="game">
+            <div class="gamequestion">
 
               <div class="questions">
                 <% @game.characteristic_questions.each do |char_question| %>
@@ -153,8 +154,7 @@
 
     <div class="d-flex justify-content-center">
       <div class="d-flex justify-content-center">
-        <%= link_to "Buzzer", buzz_game_path(@game), class: "btn btn-primary" %>
-      </div>
+       </div>
     </div>
 
   <% end %>

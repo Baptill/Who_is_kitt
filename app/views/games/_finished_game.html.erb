@@ -1,4 +1,4 @@
-<div class="home-logo" style="left:10px">
+<div class="home-logo" style="left:10px; z-index:1000">
     <%= link_to root_path, class: "navbar-brand" do %>
      <%= image_tag "logos/mini-logo.png", width:"100px" %>
     <% end %>
@@ -34,7 +34,7 @@
         <div class="finished-game-small"><span style="line-height:40px">Vous gagnez 100 points ! Votre score actuel est de </span><span style="font-size:40px"><b><%= @player_two.user.score %> points</b></span></div>
         <div class="finished-game-small mt-5">La carte que <%= @player_one.user.nickname %> a choisi de vous faire devinner était : <%= @player_one_guess_card.character.name %> </div>
         <%= cl_image_tag @player_one_guess_card.character.photo.key, width: 103, class:"imgfinished", crop: :fill %>        <div class="confetis">
-          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>à
+          <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
           <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_wys2rrr6.json"  background="transparent"  speed="0.6"  style="width: 100vw; height: 100vh; position:relative" autoplay></lottie-player>
         </div>
       <% else %>

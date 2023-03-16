@@ -2,24 +2,37 @@
   width: 300px;
 }
 
+.gamequestion {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  height: auto;
+  width: 300px;
+
+  .questions {
+    width:300px
+  }
+}
 .game {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   flex-wrap: wrap;
   height: auto;
-  width: 85vh;
+  width: 85vw;
+
 
   a {
     display: flex;
-    width: 12%;
+    width: 100%;
     border-radius: 6px;
 
     img {
       width: 100%;
       height: auto;
       border-radius: 3px;
-      border: solid 2px black;
+     // border: solid 2px black;
       box-shadow: rgba(0, 0, 0, 0.4) 0px -15px 10px 0px;
     }
   }
@@ -104,12 +117,12 @@
 }
 
 .ask {
-  font-size: 18px;
+  font-size: 14px;
   color: $red;
 }
 
 .type-attribute {
-  font-size: 18px;
+  font-size: 14px;
   color: black;
   margin-top: 5px;
 }
