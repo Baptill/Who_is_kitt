@@ -11,10 +11,10 @@
 
 }
 .block-jaune {
-  background-color: #F8C83C;
+  background-color: $yellow;
   border-radius: 10px;
   margin: 20px auto;
-  padding: 2% 4% ;
+  padding: 24px !important;
 }
 
 .margin-head {
@@ -27,7 +27,7 @@
   color: #333 !important;
   font-weight: 600 !important;
   margin-bottom: 20px !important;
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 .prules {
@@ -35,5 +35,16 @@
   color: #333 !important;
   font-weight: 400 !important;
   line-height: 24px;
+}
 
+.block-identification {
+  width:500px;
+
+  .avatar-bordered {
+    border: 3px solid $yellow;
+  }
+}
+
+.block-user {
+  background:white;
 }
