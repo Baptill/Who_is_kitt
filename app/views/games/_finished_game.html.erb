@@ -1,18 +1,22 @@
-<div class="d-flex flex-column mb-3 pending-modal w-50 ">
-  <div class="p-2">
-    <h1>Partie terminée</h1>
-    <% if @player_one.winner %>
-      <% if @current_player == @player_one %>
-        <h3>Bravo <%= @player_one.user.nickname %> tu as gagné !</h3>
-      <% else %>
-        <h3>Désolé <%= @player_two.user.nickname %> tu as perdu !</h3>
-      <% end %>
+<h1>Partie terminée</h1>
+  <% if @player_one.winner %>
+    <% if @current_player == @player_one %>
+      <h3>Bravo <%= @player_one.user.nickname %> tu as gagné !</h3>
+      <div class="confetis">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_wys2rrr6.json"  background="transparent"  speed="0.6"  style="width: 1500px; height: 1500px;"    autoplay></lottie-player>
+      </div>
     <% else %>
-      <% if @current_player == @player_two %>
-        <h3>Bravo <%= @player_two.user.nickname %> tu as gagné !</h3>
-      <% else %>
-        <h3>Désolé <%= @player_one.user.nickname %> tu as perdu !</h3>
-      <% end %>
+      <h3>Désolé <%= @player_two.user.nickname %> tu as perdu !</h3>
     <% end %>
-  </div>
-</div>
+    <% else %>
+    <% if @current_player == @player_two %>
+      <h3>Bravo <%= @player_two.user.nickname %> tu as gagné !</h3>
+      <div class="confetis">
+        <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+        <lottie-player src="https://assets7.lottiefiles.com/packages/lf20_wys2rrr6.json"  background="transparent"  speed="0.6"  style="width: 1500px; height: 1500px;"    autoplay></lottie-player>
+      </div>
+     <% else %>
+      <h3>Désolé <%= @player_one.user.nickname %> tu as perdu !</h3>
+     <% end %> 
+  <% end %>

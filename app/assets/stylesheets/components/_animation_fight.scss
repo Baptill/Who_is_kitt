@@ -9,6 +9,10 @@
   opacity:1;
 }
 
+.buzzer-animation {
+  animation: move 1s ease-in-out;
+}
+
 @keyframes grow-critical {
   0% {
     font-size: 0;
