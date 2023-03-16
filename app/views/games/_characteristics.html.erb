@@ -12,7 +12,7 @@
 
           <% end %>
             <li>
-            <%= link_to buzz_game_path(@game, player_id: @turn.player.id) do %>
+            <%= link_to buzz_game_path(@game, player_id: @turn.player.id, user_buzzer: current_user.id) do %>
             <%# <button data-action="click->buzzer#add" class="buzzer-button"> %>
               <%# <button  class="buzzer-button">  %>
               <%#= link_to "Buzzer", buzz_game_path(@game), class: "btn btn-primary" %>
@@ -25,9 +25,3 @@
     </div>
   </div>
 <% end %>
-
-   <%# <%= f.association :characteristic,
-            as: :radio_buttons,
-            collection: @characteristic_collection,
-            wrapper_html: {class: "flex-grow-1"}
-          %>

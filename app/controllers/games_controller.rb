@@ -97,7 +97,6 @@ class GamesController < ApplicationController
     @game.buzzer!
     @current_player = current_user.active_player(@game)
 
-
     GameChannel.broadcast_to(@game, true)
     head :ok
   end

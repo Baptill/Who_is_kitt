@@ -10,7 +10,7 @@
       <%= render partial: "active_game", locals: { game: @game } %>
     <% elsif @game.started? %>
       <%= render partial: "started_game", locals: { game: @game } %>
-    <% elsif @game.buzzer? %>
+    <% elsif @game.buzzer?  && current_user == User.find(@game.turn.player.user_id)%>
       <%= render partial: "buzz", locals: { game: @game } %>
     <% elsif @game.finished? %>
       <%= render partial: "finished_game", locals: { game: @game, card: @card_selected } %>
