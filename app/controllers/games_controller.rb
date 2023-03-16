@@ -129,6 +129,7 @@ class GamesController < ApplicationController
         @player_two.update(winner: true)
       end
       @game.update(status: 'finished')
+      @game.manage_score!
     elsif @current_player == @player_two
       if @card.character_id == @player_one_guess_card.character_id
         @player_one.update(winner: false)
@@ -138,6 +139,7 @@ class GamesController < ApplicationController
         @player_two.update(winner: false)
       end
       @game.update(status: 'finished')
+      @game.manage_score!
     end
 
 

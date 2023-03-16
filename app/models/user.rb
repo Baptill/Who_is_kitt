@@ -10,4 +10,10 @@ class User < ApplicationRecord
   def active_player(game)
     Player.find_by(game:, user: self)
   end
+
+  def self.scores
+    User.all.map do |user|
+      { "#{user.nickname}": user.score }
+    end
+  end
 end
