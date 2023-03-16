@@ -7,14 +7,14 @@
 <div class="container d-flex flex-column align-items-center">
 
   <div class="d-flex margin-head">
-    <div class="d-flex"><%= image_tag "logos/welcomeback.png", height: "100px" %></div>
+  <h1 class="size70 mb-5">Mon Dashboard</h1>
   </div>
 
   <div class="d-flex">
 
     <div class="d-flex flex-column ">
 
-      <div class="block-identification fight d-flex align-items-center justify-content-center">
+      <div class="d-flex block-identification fight mx-3 align-items-center justify-content-center" style="height:122px">
         <%= link_to "games", data: {turbo_method: :post} do %>
           <%= image_tag "logos/clicktofight.png", width: "340px" %>
         <% end %>
@@ -75,10 +75,10 @@
                     type="button"
                     role="tab"
                     aria-controls="v-pills-batch"
-                    aria-selected="false">Batch #1129</button>
+                    aria-selected="false">Batch #<%= current_user.batch %></button>
           </div>
 
-          <div class="tab-content"
+          <div class="tab-content w-100"
                 id="v-pills-tabContent">
 
             <div class="tab-pane fade show active"
@@ -87,9 +87,20 @@
                   aria-labelledby="v-pills-general-tab"
                   tabindex="0">
                 <ol>
-              <% @users.order(score: :desc).each do |user| %>
-                  <li><%= "#{user.nickname}"  "#{user.score}" %></li>
+
+                  <% @top10.each do |user| %>
+
+                  <% if current_user.nickname.include?(user.nickname) %>
+                    <li style="text-align:justify; padding-left:5px; color:red"><b> <%= user.nickname %> : <%= user.score %> points</b></li>
+                  <% else %>
+                    <li style="text-align:justify; padding-left:5px"> <%= user.nickname %> : <%= user.score %> points</li>
+                  <% end %>
+
                 <% end %>
+              <% unless @top10.include?(current_user) %>
+              <li style="text-align:justify; padding-left:5px"> <%= current_user.nickname %> : <%= current_user.score %> points</li>
+              <% end %>
+
                 </ol>
             </div>
 
@@ -98,7 +109,22 @@
                   role="tabpanel"
                   aria-labelledby="v-pills-batch-tab"
                   tabindex="0">
+ <ol>
 
+                  <% @top10batch.each do |user| %>
+
+                  <% if current_user.nickname.include?(user.nickname) %>
+                    <li style="text-align:justify; padding-left:5px; color:red"><b> <%= user.nickname %> : <%= user.score %> points</b></li>
+                  <% else %>
+                    <li style="text-align:justify; padding-left:5px"> <%= user.nickname %> : <%= user.score %> points</li>
+                  <% end %>
+
+                <% end %>
+              <% unless @top10batch.include?(current_user) %>
+              <li style="text-align:justify; padding-left:5px"> <%= current_user.nickname %> : <%= current_user.score %> points</li>
+              <% end %>
+
+                </ol>
             </div>
           </div>
   </div>

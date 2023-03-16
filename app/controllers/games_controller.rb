@@ -97,7 +97,8 @@ class GamesController < ApplicationController
     @game.buzzer!
     @current_player = current_user.active_player(@game)
 
-    redirect_to game_path(@game)
+    GameChannel.broadcast_to(@game, true)
+    head :ok
   end
 
   def save_winner
