@@ -9,6 +9,7 @@
 require "open-uri"
 
 # DELETE ALL RECORDS
+Turn.destroy_all
 Feature.destroy_all
 Card.destroy_all
 Character.destroy_all
