@@ -31,7 +31,7 @@
         <%# <div class="round-time-bar animate-timer" data-game-logic-target="timeBar"> %>
           <div></div>
         </div>
-        <span class="game-user-name"><%=  @player_one.user.nickname  %></span>
+        <span class="game-user-name" style="color:#CE001D"><%=  @player_one.user.nickname  %></span>
         <% if @current_player.user == @player_two.user %>
         <%# mini jeu adverse %>
         <div class="d-flex justify-content-end" style="margin-top:-47px">
@@ -102,7 +102,7 @@
 
   <div class="player-one-deck container text-center">
     <div class="card-tray-wrapper">
-      <div class="card-tray">
+      <div class="<% if @current_user.id == @player_one.user_id  %>card-tray <% else %>card-tray-yellow <% end %>">
         <% @current_player.cards.each do |card| %>
            <% if card.active == true %>
           <div class= "card">
@@ -110,7 +110,7 @@
             <div class="card-front">
               <%= cl_image_tag card.character.photo.key, width: 103, height: 190, crop: :fill, class:'' %>
             </div>
-            <div class="card-shadow"></div>
+            <div class="<% if @current_user.id == @player_one.user_id  %>card-shadow<% else %>card-shadow-yellow <% end %>"></div>
           </div>
           <% else %>
           <div class="card card-tray-wrapper-disactive">

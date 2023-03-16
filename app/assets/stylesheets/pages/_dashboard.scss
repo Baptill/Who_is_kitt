@@ -15,6 +15,7 @@
   border-radius: 10px;
   margin: 20px auto;
   padding: 24px !important;
+  height: 350px;
 }
 
 .margin-head {
@@ -26,8 +27,14 @@
   font-size: 22px !important;
   color: #333 !important;
   font-weight: 600 !important;
-  margin-bottom: 20px !important;
   text-decoration: none;
+
+
+}
+.text-degrade {
+  background: -webkit-linear-gradient($yellow, $red);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .prules {
@@ -36,4 +43,4 @@
   font-weight: 400 !important;
   line-height: 24px;
 }
-
+ 

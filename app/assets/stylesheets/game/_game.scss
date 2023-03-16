@@ -64,3 +64,13 @@
 .card-tray-active-game {
   margin-bottom: 80px;
 }
+
+.bouge {
+  transform: rotate(0deg);
+  transition: 0.3s;
+}
+
+.bouge:hover {
+  transform: rotate(-10deg);
+  transition: 0.3s;
+}
