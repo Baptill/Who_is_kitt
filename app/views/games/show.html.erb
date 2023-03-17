@@ -3,7 +3,7 @@
   data-buzzer-target="wrapper"
   data-game-subscription-game-id-value="<%= @game.id %>">
 
-  <div id="game_<%= @game.id %>" data-chatroom-subscription-target="board">
+  <div id="game_<%= @game.id %>" data-chatroom-subscription-target="board" data-controller='game-logic'>
     <% if @game.pending? %>
       <%= render partial: "pending_game", locals: { game: @game } %>
     <% elsif @game.active? %>

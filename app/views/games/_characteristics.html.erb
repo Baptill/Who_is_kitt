@@ -12,7 +12,7 @@
 
           <% end %>
             <li>
-            <%= link_to buzz_game_path(@game, player_id: @turn.player.id) do %>
+            <%= link_to game_path(@game, player_id: @turn.player.id, buzzing: true) do %>
             <%# <button data-action="click->buzzer#add" class="buzzer-button"> %>
               <%# <button  class="buzzer-button">  %>
               <%#= link_to "Buzzer", buzz_game_path(@game), class: "btn btn-primary" %>

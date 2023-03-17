@@ -5,23 +5,19 @@ export default class extends Controller {
   static targets = ["timeBar", "timer"]
 
   connect() {
+    let crono = this.timerTarget
+    let cpt = 30
 
-    var cpt = 30;
-    console.log(cpt)
     setInterval(function(){
-      if(cpt>0) // si on a pas encore atteint la fin
-      {
+      if (cpt>0) {
           --cpt; // décrémente le compteur
-          var Crono = this.timerTarget; // récupère l'id
-          var old_contenu = Crono.firstChild; // stock l'ancien contenu
-          Crono.removeChild(old_contenu); // supprime le contenu
-          var texte = document.createTextNode(cpt); // crée le texte
-          this.timerTarget.innerText = cpt
-          Crono.appendChild(texte); // l'affiche
+          let old_contenu = crono.firstChild; // stock l'ancien contenu
+          crono.removeChild(old_contenu); // supprime le contenu
+          let texte = document.createTextNode(cpt); // crée le texte
+          crono.innerText = cpt
       }
-      else // sinon brise la boucle
-      {
-        clearInterval(this.timer);
+      else {
+        clearInterval(this.timer)
       }
   }, 1000);
 }

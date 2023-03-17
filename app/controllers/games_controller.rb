@@ -9,8 +9,9 @@ class GamesController < ApplicationController
     @card.update(guess: true)
 
     @game.started! if @game.player_one.cards.find_by(guess: true) && @game.player_two.cards.find_by(guess: true)
-    GameChannel.broadcast_to(@game, true)
-    head :ok
+
+    GameChannel.broadcast_to(@game, true) if @game.player_one.cards.find_by(guess: true) && @game.player_two.cards.find_by(guess: true)
+    redirect_to game_path(@game)
   end
 
   def move
@@ -46,11 +47,27 @@ class GamesController < ApplicationController
 
     @game = Game.includes(players: { cards: { character: { features: :characteristic, photo_attachment: :blob}}}).find(params[:id])
 
-    Player.find_or_create_by(user_id: current_user.id, game: @game) do |player|
-      player.user = current_user
-      player.game = @game
-      player.score = 0
-      player.winner = false
+    @player_two = Player.find_by(user: current_user, game: @game)
+
+    unless @player_two
+      Player.find_or_create_by(user_id: current_user.id, game: @game) do |player|
+        player.user = current_user
+        player.game = @game
+        player.score = 0
+        player.winner = false
+      end
+      @game.active! if @game.players.count > 1 && @game.pending?
+
+      GameChannel.broadcast_to(@game, true)
+
+      redirect_to game_path(@game)
+    end
+
+    if params[:buzzing]
+      @game.buzzer!
+
+      GameChannel.broadcast_to(@game, true)
+      redirect_to game_path(@game)
     end
 
     @characteristic_question = CharacteristicQuestion.new
@@ -65,28 +82,28 @@ class GamesController < ApplicationController
     @player_one_guess_card = @player_one_cards.find_by(guess: true)
 
     if @game.players.count > 1
-    @player_two = @game.player_two
-    @player_two_cards = @player_two.cards
-    @player_two_active_cards = @player_two_cards.select { |card| card.active }
-    @player_two_guess_card = @player_two_cards.find_by(guess: true)
+      @player_two = @game.player_two
+      @player_two_cards = @player_two.cards
+      @player_two_active_cards = @player_two_cards.select { |card| card.active }
+      @player_two_guess_card = @player_two_cards.find_by(guess: true)
 
-    @player_two_select_card = @player_two_cards.find_by(select: true)
-    @player_one_select_card = @player_one_cards.find_by(select: true)
+      @player_two_select_card = @player_two_cards.find_by(select: true)
+      @player_one_select_card = @player_one_cards.find_by(select: true)
 
 
 
-    @game.active! if @game.players.count > 1 && @game.pending?
+      @game.active! if @game.players.count > 1 && @game.pending?
 
-    puts "#########################"
-    puts "Creating turn"
-    p @game.turns.find_by(number: 1)
+      puts "#########################"
+      puts "Creating turn"
+      p @game.turns.find_by(number: 1)
 
-    Turn.create!(player: @player_one, number: 1) unless @game.turns.find_by(number: 1)
+      Turn.create!(player: @player_one, number: 1) unless @game.turns.find_by(number: 1)
 
-    @turn = @game.turns.order(number: :asc).last
-    puts "#########################"
+      @turn = @game.turns.order(number: :asc).last
+      puts "#########################"
 
-    @characteristics = Characteristic.all
+      @characteristics = Characteristic.all
     end
   end
 
@@ -99,10 +116,11 @@ class GamesController < ApplicationController
 
     GameChannel.broadcast_to(@game, true)
     head :ok
+
+    # redirect_to game_path(@game)
   end
 
   def save_winner
-
     @current_player = current_user.active_player(@game)
 
     @player_one = @game.player_one
