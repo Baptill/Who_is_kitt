@@ -22,16 +22,18 @@
 
       <div class="block-jaune fight mx-3 rules px-3 py-3">
         <h3 class="h3rules">Règles du jeu</h3><hr>
-        <p class="prules">
-          Chacun des deux joueurs prend un plateau avec tous les visages des personnages.<br>
-          Ensuite, chaque joueur pioche une carte au hasard.<br>
-          Ce sera le personnage que son adversaire doit deviner !<br>
-          Chacun des joueurs positionne cette carte devant son plateau sans la faire voir à l'autre joueur
-        </p>
+          <p class="prules">
+            1. Chaque joueur choisit une carte de personnage mystère<br>
+            2. Les joueurs jouent ensuite à tour de rôle en posant des questions sur les caractéristiques physiques des personnages.<br>
+            3. Le joueur doit répondre honnêtement à chaque question<br>
+            4. Le premier joueur qui devine correctement le personnage mystère de son adversaire remporte la partie.
+          </p>
       </div>
+
     </div>
 
     <div class="d-flex flex-column ">
+
       <div class="d-flex block-identification block-user fight mx-3 align-items-center justify-content-between gap-3">
         <div>
           <% if current_user.photo.key? %>
@@ -62,7 +64,6 @@
 
         <div class="d-flex flex-column">
           <div><b></div>
-
         </div>
       </div>
 
@@ -117,30 +118,30 @@
                 </ol>
             </div>
 
-            <div class="tab-pane fade"
-                  id="v-pills-batch"
-                  role="tabpanel"
-                  aria-labelledby="v-pills-batch-tab"
-                  style="font-size: 14px;"
-                  tabindex="0">
- <ol>
+           <div class="tab-pane fade"
+                id="v-pills-batch"
+                role="tabpanel"
+                aria-labelledby="v-pills-batch-tab"
+                style="font-size: 14px;"
+                tabindex="0">
+            <ol>
 
-                  <% @top10batch.each do |user| %>
+              <% @top10batch.each do |user| %>
 
-                  <% if current_user.nickname.include?(user.nickname) %>
-                    <li style="text-align:justify; padding-left:5px; color:red"><b> <%= user.nickname %> : <%= user.score %> points</b></li>
-                  <% else %>
-                    <li style="text-align:justify; padding-left:5px"> <%= user.nickname %> : <%= user.score %> points</li>
-                  <% end %>
-
+                <% if current_user.nickname.include?(user.nickname) %>
+                  <li style="text-align:justify; padding-left:5px; color:red"><b> <%= user.nickname %> : <%= user.score %> points</b></li>
+                <% else %>
+                  <li style="text-align:justify; padding-left:5px"> <%= user.nickname %> : <%= user.score %> points</li>
                 <% end %>
+
+              <% end %>
               <% unless @top10batch.include?(current_user) %>
-              <li style="text-align:justify; padding-left:5px"> <%= current_user.nickname %> : <%= current_user.score %> points</li>
+                <li style="text-align:justify; padding-left:5px"> <%= current_user.nickname %> : <%= current_user.score %> points</li>
               <% end %>
 
-                </ol>
-            </div>
-          </div>
+          </ol>
+         </div>
+       </div>
   </div>
 </div>
 </div>
