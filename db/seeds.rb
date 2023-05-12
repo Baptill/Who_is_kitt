@@ -29,62 +29,50 @@ puts "seeding users"
 
 user_briag = User.create!(email: "briag.martin@gmail.com", password: "password", password_confirmation: "password", nickname: "Briag", score: 1900, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/briag.jpg")
-user_briag.photo.attach(io: file, filename: "briag.jpg", content_type: "image/jpg")
 user_briag.save
 
 user_baptiste = User.create!(email: "baptil@gmail.com", password: "password", password_confirmation: "password", nickname: "Baptiste", score: 1600, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/baptiste.jpg")
-user_baptiste.photo.attach(io: file, filename: "baptiste.jpg", content_type: "image/jpg")
 user_baptiste.save
 
 user_charles = User.create!(email: "charleswoehl@gmail.com", password: "password", password_confirmation: "password", nickname: "Charles", score: 1400, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/gaspard.png")
-user_charles.photo.attach(io: file, filename: "gaspard.png", content_type: "image/png")
 user_charles.save
 
 user_jerome = User.create!(email: "jerome@gmail.com", password: "password", password_confirmation: "password", nickname: "Jerome", score: 1700, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/jerome.png")
-user_jerome.photo.attach(io: file, filename: "jerome.png", content_type: "image/png")
 user_jerome.save
 
 user_kevin = User.create!(email: "kevin@gmail.com", password: "password", password_confirmation: "password", nickname: "Kevin", score: 700, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/kevin.jpg")
-user_kevin.photo.attach(io: file, filename: "kevin.jpg", content_type: "image/jpg")
 user_kevin.save
 
 user_nicolas = User.create!(email: "nicolas@gmail.com", password: "password", password_confirmation: "password", nickname: "Nicolas", score: 900, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/nicolas.jpg")
-user_nicolas.photo.attach(io: file, filename: "nicolas.jpg", content_type: "image/jpg")
 user_nicolas.save
 
 user_gaetan = User.create!(email: "gaetan@gmail.com", password: "password", password_confirmation: "password", nickname: "Gaetan", score: 1300, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/gaetan.jpg")
-user_gaetan.photo.attach(io: file, filename: "gaetan.jpg", content_type: "image/jpg")
 user_gaetan.save
 
 user_bernard = User.create!(email: "bernard@gmail.com", password: "password", password_confirmation: "password", nickname: "Bernard", score: 900, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/bernard.png")
-user_bernard.photo.attach(io: file, filename: "bernard.png", content_type: "image/png")
 user_bernard.save
 
 user_louis = User.create!(email: "louis@gmail.com", password: "password", password_confirmation: "password", nickname: "Louis", score: 1200, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/louis.jpg")
-user_louis.photo.attach(io: file, filename: "louis.jpg", content_type: "image/jpg")
 user_louis.save
 
 user_mickael = User.create!(email: "mickael@gmail.com", password: "password", password_confirmation: "password", nickname: "Mickael", score: 700, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/mickael.jpg")
-user_mickael.photo.attach(io: file, filename: "mickael.jpg", content_type: "image/jpg")
 user_mickael.save
 
 user_camille = User.create!(email: "camille@gmail.com", password: "password", password_confirmation: "password", nickname: "Camille", score: 1400, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/camille.jpg")
-user_camille.photo.attach(io: file, filename: "camille.jpg", content_type: "image/jpg")
 user_camille.save
 
 user_etienne = User.create!(email: "etienne@gmail.com", password: "password", password_confirmation: "password", nickname: "Etienne", score: 1100, batch: "rennes")
 file = URI.open("app/assets/images/profil-picture/etienne.jpg")
-user_etienne.photo.attach(io: file, filename: "etienne.jpg", content_type: "image/jpg")
 user_etienne.save
 
 
@@ -120,7 +108,6 @@ femme = Characteristic.create(name: "femme")
 puts "seeded #{Characteristic.count} characteristics"
 puts "finished seeding characteristics"
 
-# Create the characters
 puts "seeding characters"
 alex = Character.new(name: "Alex")
 file = URI.open("app/assets/images/guesswho_profiles/alex.jpg")

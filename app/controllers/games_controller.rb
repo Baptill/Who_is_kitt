@@ -5,11 +5,8 @@ class GamesController < ApplicationController
   def select_character
     @game = Game.find(params[:game])
     @card = Card.find(params[:id])
-
     @card.update(guess: true)
-
     @game.started! if @game.player_one.cards.find_by(guess: true) && @game.player_two.cards.find_by(guess: true)
-
     GameChannel.broadcast_to(@game, true) if @game.player_one.cards.find_by(guess: true) && @game.player_two.cards.find_by(guess: true)
     redirect_to game_path(@game)
   end
@@ -43,10 +40,7 @@ class GamesController < ApplicationController
 
 
   def show
-    # raise
-
     @game = Game.includes(players: { cards: { character: { features: :characteristic, photo_attachment: :blob}}}).find(params[:id])
-
     @player_two = Player.find_by(user: current_user, game: @game)
 
     unless @player_two
@@ -74,7 +68,6 @@ class GamesController < ApplicationController
     @characteristic_collection = Characteristic.all
 
     @player_one = @game.player_one
-
     @current_player = current_user.active_player(@game)
 
     @player_one_cards = @player_one.cards

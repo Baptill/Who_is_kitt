@@ -11,9 +11,7 @@
   </div>
 
   <div class="d-flex">
-
     <div class="d-flex flex-column ">
-
       <div class="d-flex block-identification fight mx-3 align-items-center justify-content-center bouge" style="height:122px">
         <%= link_to "games", data: {turbo_method: :post} do %>
            <%= image_tag "logos/partie.png", width:"300px" %>
@@ -29,11 +27,9 @@
             4. Le premier joueur qui devine correctement le personnage mystère de son adversaire remporte la partie.
           </p>
       </div>
-
     </div>
 
     <div class="d-flex flex-column ">
-
       <div class="d-flex block-identification block-user fight mx-3 align-items-center justify-content-between gap-3">
         <div>
           <% if current_user.photo.key? %>
@@ -45,8 +41,6 @@
             <h4><%= @user.nickname %></h4>
             <b><%= @user.score %> points</b>
           </div>
-
-
           <div class="d-flex flex-grow-1 ">
             <span><%= @user.email %></span>
           </div>
