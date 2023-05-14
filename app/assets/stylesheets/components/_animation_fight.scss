@@ -9,17 +9,6 @@
   opacity:1;
 }
 
-.buzzer-animation {
-  animation: move 1s ease-in-out;
-}
-
-.buzzcenter {
-  width: 100vw;
-  height: 20vh;
-  margin-top: 40vh;
-  text-align: center;
-}
-
 @keyframes grow-critical {
   0% {
     font-size: 0;
@@ -40,6 +29,10 @@
   height:auto !important;
 }
 
+
+.buzzer-animation {
+  animation: move 1s ease-in-out;
+}
 
 @keyframes move {
   0% {
@@ -107,6 +100,17 @@
 
   }
 }
+
+.buzzcenter {
+  width: 100vw;
+  height: 20vh;
+  margin-top: 40vh;
+  text-align: center;
+}
+
+
+
+
 
 
 .image-container {

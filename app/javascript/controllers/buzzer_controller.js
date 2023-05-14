@@ -8,7 +8,6 @@ export default class extends Controller {
   }
 
   add() {
-    console.log("Hello");
     this.wrapperTarget.classList.add("buzzer-animation")
     setTimeout(() => {
       this.wrapperTarget.classList.remove("buzzer-animation")

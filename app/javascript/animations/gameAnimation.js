@@ -5,8 +5,8 @@ const gameAnimation = () => {
   const pendingScreen = document.querySelector(".pending-screen")
 
   const fightElement = document.querySelector(".fight-action");
-  // Pending anim
 
+  // Pending anim
   if (pendingScreen) {
     gsap.from(fightElement, {
       duration: 1.0,
